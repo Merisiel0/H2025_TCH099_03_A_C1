@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "BSP.sln"
+    "dotnet.defaultSolution": "H2025_TCH099_03_A_C1.sln"
 }
