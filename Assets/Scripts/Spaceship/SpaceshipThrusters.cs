@@ -19,12 +19,24 @@ public class SpaceshipThrusters : MonoBehaviour
         sprites = GetComponentsInChildren<SpriteRenderer>();
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown("1"))
+        {
+            Enable();
+        }
+        else if (Input.GetKeyDown("2"))
+        {
+            Disable();
+        }
+    }
+
     private void MoveThrusters(float newXPosition, float desiredOpacity)
     {
         float distance = Mathf.Abs(transform.position.x - newXPosition);
         float duration = distance / transitionSpeed;
         LeanTween.cancel(gameObject);
-        LeanTween.moveX(gameObject, newXPosition, duration / 2);
+        LeanTween.moveX(gameObject, newXPosition, duration / 2).setEase(LeanTweenType.easeInOutQuart);
 
         foreach (SpriteRenderer sprite in sprites)
         {
@@ -44,11 +56,13 @@ public class SpaceshipThrusters : MonoBehaviour
 
     public void Enable()
     {
+        GameTimer.Pause(false);
         MoveThrusters(startPos, 1.0f);
     }
 
     public void Disable()
     {
+        GameTimer.Pause(true);
         MoveThrusters(endPos, 0.0f);
     }
 }
