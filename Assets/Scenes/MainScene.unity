@@ -248,10 +248,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63ad70a937121f741a12e001e7477f26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalTime: 360
+  totalTime: 120
   onTimerEnd:
     m_PersistentCalls:
       m_Calls: []
+  onTimerEndColor: {r: 0, g: 1, b: 0, a: 1}
   timerText: {fileID: 2141616894}
 --- !u!4 &157691659
 Transform:
