@@ -5,7 +5,8 @@ using UnityEngine;
 public enum MissionEvent
 {
     Blackout,
-    ThrustersShutdown
+    ThrustersShutdown,
+    ThrustersStart,
 }
 
 public class MissionEventManager : MonoBehaviour
@@ -22,6 +23,18 @@ public class MissionEventManager : MonoBehaviour
         listeners = new List<MissionEventListener>();
     }
 
+    public void Update()
+    {
+        if (Input.GetKeyDown("1"))
+        {
+            SendEvent(MissionEvent.ThrustersShutdown);
+        }
+        else if (Input.GetKeyDown("2"))
+        {
+            SendEvent(MissionEvent.ThrustersStart);
+        }
+    }
+
     public static void SendEvent(MissionEvent e)
     {
         foreach(MissionEventListener listener in instance.listeners)
@@ -36,7 +49,7 @@ public class MissionEventManager : MonoBehaviour
     }
 }
 
-public class MissionEventListener : MonoBehaviour
+public interface MissionEventListener
 {
-    public virtual void OnNotify(MissionEvent e) { };
+    public void OnNotify(MissionEvent e);
 }

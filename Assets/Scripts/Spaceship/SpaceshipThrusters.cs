@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpaceshipThrusters : MonoBehaviour
+public class SpaceshipThrusters : MonoBehaviour, MissionEventListener
 {
     private float startPos;
     public float endPos;
@@ -12,6 +12,8 @@ public class SpaceshipThrusters : MonoBehaviour
     private void Awake()
     {
         startPos = transform.position.x;
+
+        MissionEventManager.AddEventListener(this);
     }
 
     private void Start()
@@ -19,15 +21,15 @@ public class SpaceshipThrusters : MonoBehaviour
         sprites = GetComponentsInChildren<SpriteRenderer>();
     }
 
-    private void Update()
+    public void OnNotify(MissionEvent e)
     {
-        if(Input.GetKeyDown("1"))
-        {
-            Enable();
-        }
-        else if (Input.GetKeyDown("2"))
+        if(e == MissionEvent.ThrustersShutdown)
         {
             Disable();
+        } 
+        else if(e == MissionEvent.ThrustersStart)
+        {
+            Enable();
         }
     }
 
@@ -46,7 +48,6 @@ public class SpaceshipThrusters : MonoBehaviour
                 .setEase(LeanTweenType.easeOutBounce)
                 .setOnUpdate((float val) =>
                 {
-                    Debug.Log(val);
                     Color color = sprite.color;
                     color.a = val;
                     sprite.color = color;
