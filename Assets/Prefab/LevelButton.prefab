@@ -689,6 +689,7 @@ MonoBehaviour:
   headerText: {fileID: 669020953247496936}
   descriptionText: {fileID: 778485313310887456}
   durationText: {fileID: 8111174863923875738}
+  background: {fileID: 59612068920635134}
   regularLayout: {fileID: 3283172239697337159}
   errorLayout: {fileID: 1629104555647238850}
 --- !u!1 &3283172239697337159
