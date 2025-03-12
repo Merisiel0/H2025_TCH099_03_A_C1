@@ -25,9 +25,14 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        HandlePosition();
         HandleRotation();
         HandleInteract();
+    }
+
+    private void FixedUpdate()
+    {
+        HandlePosition();
+        m_rb.velocity = m_dir * m_currentSpeed;
     }
 
     private void HandlePosition()
@@ -61,11 +66,6 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-    }
-
-    private void FixedUpdate()
-    {
-        m_rb.velocity = m_dir * m_currentSpeed;
     }
 
     private void OnDrawGizmos(){

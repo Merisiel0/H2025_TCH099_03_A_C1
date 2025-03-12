@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
 
+/// <summary>
+/// Classe singleton qui s'occupe de gèrer le minuteur de la partie au cours d'une mission
+/// </summary>
 public class GameTimer : MonoBehaviour
 {
     private static GameTimer instance;
@@ -12,16 +15,17 @@ public class GameTimer : MonoBehaviour
     public int remainingTime { get; private set; }
     public bool isPaused { get; private set; }
 
-    public UnityEvent onTimerEnd;
+    public UnityEvent onTimerEnd; // Callback lorsque le minuteur à atteint le temps 0;
 
-    private Color regularTextColor;
-    public Color onTimerEndColor = Color.green;
-    public Color onPausedColor = Color.yellow;
+    private Color regularTextColor; // Couleur normale du texte
+    public Color onTimerEndColor = Color.green; // Couleur lorsque le temps est écoulé
+    public Color onPausedColor = Color.yellow; // Couleur lorsque le minuteur est sur pause
 
     public TMPro.TextMeshProUGUI timerText;
 
     private void Awake()
     {
+        // Init du singleton
         if(instance == null)
         {
             instance = this;
@@ -30,12 +34,19 @@ public class GameTimer : MonoBehaviour
 
     private void Start()
     {
+        // Initialisation du minuteur
         remainingTime = totalTime;
         regularTextColor = timerText.color;
 
+        // On commence le décompte
         StartCoroutine(ExecuteTimer());
     }
 
+
+    /// <summary>
+    /// Fonction qui gère la mise en pause ou non du minuteur. On vient notament changer la couleurs du texte.
+    /// </summary>
+    /// <param name="paused">Vrai si on met le minuteur sur pause, Faux si on résume.</param>
     public static void Pause(bool paused)
     {
         instance.isPaused = paused;
@@ -48,6 +59,10 @@ public class GameTimer : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Fonction qui met à jours le texte qui affiche le temps réstant au minuteurs en convertissant le nombre de
+    /// secondes au format MM:SS (MM = minutes sur deux chiffres et SS = secondes sur deux chiffres)
+    /// </summary>
     private void UpdateTimerText()
     {
         string minutes = (remainingTime / 60).ToString();
@@ -59,6 +74,11 @@ public class GameTimer : MonoBehaviour
         timerText.SetText(minutes + ":" + seconds); ;
     }
 
+    /// <summary>
+    /// Fonction Asynchrone qui fait le décompte du temps. Se répéte chaque seconde et s'arrète à la fin du décompte en plus d'appeler le callback
+    /// prévu à cet effet. Le décompte ne s'effectue par lorsque le minuteur est sur pause.
+    /// </summary>
+    /// <returns></returns>
     IEnumerator ExecuteTimer()
     {
         if(remainingTime > 0)

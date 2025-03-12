@@ -2,8 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Classe qui permet de convertir un code hexadecimal en objet Color de unity
+/// </summary>
 public class HexToColor : MonoBehaviour
 {
+    /// <summary>
+    /// Fonction qui permet de convertir un code hexadecimal en objet Color de unity
+    /// </summary>
+    /// <param name="hex">Le code couleur hexadécimal sous forme (#ffffff ou ffffff) à convertir</param>
+    /// <returns>Retourne un objet Color qui correspond au bon code couleur.</returns>
     public static Color FromHex(string hex)
     {
         hex = hex.Replace("#", "");
