@@ -37,8 +37,16 @@ public class ApiController : MonoBehaviour
     {
         instance.StartCoroutine(AsyncFetchDataFromAPI(url, (json) =>
         {
-            T response = JsonUtility.FromJson<T>(json);
-            callback.Invoke(response);
+            try
+            {
+                T response = JsonUtility.FromJson<T>(json);
+                callback.Invoke(response);
+            } 
+            catch(Exception e)
+            {
+                Debug.LogWarning(e);
+                callback.Invoke(default);
+            }
         }));
     }
 
@@ -50,6 +58,7 @@ public class ApiController : MonoBehaviour
         if (request.result != UnityWebRequest.Result.Success)
         {
             Debug.LogError("Erreur API : " + request.error);
+            callback.Invoke(null);
         }
         else
         {

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,12 +17,26 @@ public class MainMenu : MonoBehaviour
 
         ApiController.FetchDataFromAPI("api/v1/niveaux", (response) =>
         {
-            LevelDataWrapper data = JsonUtility.FromJson<LevelDataWrapper>("{\"levels\":" + response + "}");
-            foreach (LevelData level in data.levels)
+            LevelDataWrapper data = null;
+            try
+            {
+                data = JsonUtility.FromJson<LevelDataWrapper>("{\"levels\":" + response + "}");
+            }
+            catch (Exception e) { }
+
+            if (response != null && data != null)
+            {
+                foreach (LevelData level in data.levels)
+                {
+                    LevelOptionButton levelOption = Instantiate(levelButtonPrefab).GetComponent<LevelOptionButton>();
+                    levelOption.transform.SetParent(levelButtonHolder.transform);
+                    levelOption.Init(level);
+                }
+            } else
             {
                 LevelOptionButton levelOption = Instantiate(levelButtonPrefab).GetComponent<LevelOptionButton>();
                 levelOption.transform.SetParent(levelButtonHolder.transform);
-                levelOption.Init(level);
+                levelOption.InitAsError();
             }
         });
     }

@@ -9,6 +9,15 @@ public class LevelOptionButton : MonoBehaviour
     public TextMeshProUGUI descriptionText;
     public TextMeshProUGUI durationText;
 
+    public GameObject regularLayout;
+    public GameObject errorLayout;
+
+    public void InitAsError()
+    {
+        regularLayout.SetActive(false);
+        errorLayout.SetActive(true);
+    }
+
     public void Init(LevelData data)
     {
         headerText.SetText(data.nom + " - " + data.difficulty);
