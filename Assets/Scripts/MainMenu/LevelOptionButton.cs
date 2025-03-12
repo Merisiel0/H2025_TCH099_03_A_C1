@@ -4,8 +4,8 @@ using UnityEngine;
 using TMPro;
 
 /// <summary>
-/// Classe qui correspond à une option de niveau dans le menu principal de selection.
-/// Permet de remplir les champs de texte en fonction d'un objet de type LevelData qui contient tous les champs nécessaires.
+/// Classe qui correspond ï¿½ une option de niveau dans le menu principal de selection.
+/// Permet de remplir les champs de texte en fonction d'un objet de type LevelData qui contient tous les champs nï¿½cessaires.
 /// Permet aussi d'afficher un texte en cas d'erreur.
 /// </summary>
 public class LevelOptionButton : MonoBehaviour
