@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Classe qui contient toutes les information pour une option de niveau
+/// </summary>
 [System.Serializable]
 public class LevelData
 {
@@ -13,6 +16,9 @@ public class LevelData
     public string color = "FF00FF";
 }
 
+/// <summary>
+/// Classe qui contient toutes les informations pour une liste de niveau
+/// </summary>
 [System.Serializable]
 public class LevelDataWrapper
 {
