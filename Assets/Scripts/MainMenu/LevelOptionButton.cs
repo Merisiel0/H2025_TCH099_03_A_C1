@@ -10,6 +10,8 @@ using TMPro;
 /// </summary>
 public class LevelOptionButton : MonoBehaviour
 {
+    private LevelData levelData;
+
     public TextMeshProUGUI headerText;
     public TextMeshProUGUI descriptionText;
     public TextMeshProUGUI durationText;
@@ -32,6 +34,8 @@ public class LevelOptionButton : MonoBehaviour
     /// <param name="data">Les informations du niveau.</param>
     public void Init(LevelData data)
     {
+        levelData = data;
+
         headerText.SetText(data.nom + " - " + data.difficulty);
         descriptionText.SetText(data.description);
 
@@ -40,5 +44,20 @@ public class LevelOptionButton : MonoBehaviour
         string seconds = (data.duration % 60).ToString();
         seconds = seconds.PadLeft(2, '0');
         durationText.SetText(minutes + ":" + seconds);
+
+        // On set la couleurs
+        Color color = HexToColor.FromHex(data.color);
+        headerText.color = color;
+        descriptionText.color = color;
+        durationText.color = color;
+    }
+
+    /// <summary>
+    /// Fonction appelé lorsque l'on clique sur le boutton d'option de niveau et qui s'occupe de charger le niveau et de lancer la partie
+    /// </summary>
+    public void OnClick()
+    {
+        // TODO chargement du niveau approprié
+        // ChargerNiveau(leveldata.id); À FAIRE
     }
 }
