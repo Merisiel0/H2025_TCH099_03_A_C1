@@ -29,7 +29,7 @@ public class MainMenu : MonoBehaviour
             {
                 data = JsonUtility.FromJson<LevelDataWrapper>("{\"levels\":" + response + "}");
             }
-            catch (Exception e) { }
+            catch (Exception e) { Debug.Log(e.Message); }
 
             if (response != null && data != null)
             {
