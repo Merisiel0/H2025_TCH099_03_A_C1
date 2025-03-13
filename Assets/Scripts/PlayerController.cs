@@ -15,9 +15,6 @@ public class PlayerController : MonoBehaviour
     private float m_currentSpeed;
     private Vector2 m_dir;
 
-    [Header("Interactions")]
-    [SerializeField] private float m_moduleDetectionRange = 0.5f;
-
     private void Start()
     {
         m_rb = GetComponent<Rigidbody2D>();
@@ -26,7 +23,6 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         HandleRotation();
-        HandleInteract();
     }
 
     private void FixedUpdate()
@@ -53,24 +49,5 @@ public class PlayerController : MonoBehaviour
         float angle = 180 / Mathf.PI * AngleRad;
 
         m_rb.rotation = angle - 90;
-    }
-
-    private void HandleInteract()
-    {
-        if (Input.GetKey(KeyCode.E))
-        {
-            foreach(Module module in Module.allModules){
-                if(Vector3.Distance(module.transform.position, transform.position) <= m_moduleDetectionRange){
-                    module.EnableUI();
-                    enabled = false;
-                    break;
-                }
-            }
-        }
-    }
-
-    private void OnDrawGizmos(){
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, m_moduleDetectionRange);
     }
 }
