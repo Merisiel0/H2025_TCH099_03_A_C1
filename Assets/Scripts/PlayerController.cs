@@ -61,7 +61,8 @@ public class PlayerController : MonoBehaviour
         {
             foreach(Module module in Module.allModules){
                 if(Vector3.Distance(module.transform.position, transform.position) <= m_moduleDetectionRange){
-                    module.SetState(Module.ModuleState.INTERACT);
+                    module.EnableUI();
+                    enabled = false;
                     break;
                 }
             }
