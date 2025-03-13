@@ -10,16 +10,7 @@ public class Module : MonoBehaviour
 
     private SpriteRenderer _sr;
 
-    private Color _okColor = Color.green;
-    private Color _errorColor = Color.red;
-    private Color _interactColor = Color.yellow;
-
-    public enum ModuleState
-    {
-        OK,
-        ERROR,
-        INTERACT
-    }
+    [SerializeField] private GameObject moduleUI;
 
     void Start()
     {
@@ -27,19 +18,13 @@ public class Module : MonoBehaviour
         allModules.Add(this);
     }
 
-    public void SetState(ModuleState state)
+    public void EnableUI()
     {
-        switch (state)
-        {
-            case ModuleState.OK:
-                _sr.color = _okColor;
-                break;
-            case ModuleState.ERROR:
-                _sr.color = _errorColor;
-                break;
-            case ModuleState.INTERACT:
-                _sr.color = _interactColor;
-                break;
-        }
+        moduleUI.SetActive(true);
+    }
+
+    public void DisableUI()
+    {
+        moduleUI.SetActive(false);
     }
 }
