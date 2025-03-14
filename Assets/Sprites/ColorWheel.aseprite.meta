@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8c4a229e2cc0e514d8e63ebd285bd425
+guid: 7b6f1641ff678e44cac4dc6286f13343
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -98,7 +98,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638774838007784084
+  platformSettingsDirtyTick: 638774890443546394
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -122,18 +122,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Engine
+  - name: ColorWheel
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5769231, y: -0.071428575}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 50
-      height: 54
-    spriteID: 462ea68770b61d74fade6703609fe323
+      width: 52
+      height: 28
+    spriteID: c34e266d7c0a6804aa13dc97d2a6e21b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -145,21 +145,21 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 923778348
-    name: Engine
+    guid: 139086140
+    name: ColorWheel
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Engine
+    - name: ColorWheel
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 0
-        y: 0
-        width: 50
-        height: 54
-      spriteId: 462ea68770b61d74fade6703609fe323
+        x: 2
+        y: 2
+        width: 52
+        height: 28
+      spriteId: c34e266d7c0a6804aa13dc97d2a6e21b
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -202,5 +202,5 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 50, y: 54}
+  canvasSize: {x: 64, y: 32}
   previousTextureSize: {x: 64, y: 64}
