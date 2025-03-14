@@ -7,24 +7,33 @@ using UnityEngine;
 public class Module : MonoBehaviour
 {
     public static List<Module> allModules = new List<Module>();
+  
+    // Position pour l'ouverture et la fermeture de l'écran du module
+    private static float openedPosition = 0.0f;
+    private float closedPosition;
 
-    private SpriteRenderer _sr;
-
+    [SerializeField] private float animationDuration = 0.15f;
     [SerializeField] private GameObject moduleUI;
 
     void Start()
     {
-        _sr = GetComponent<SpriteRenderer>();
+        closedPosition = moduleUI.transform.localPosition.y;
         allModules.Add(this);
+        moduleUI.SetActive(false);
     }
 
     public void EnableUI()
     {
-        moduleUI.SetActive(true);
+        LeanTween.cancel(moduleUI);
+        moduleUI.gameObject.SetActive(true);
+        LeanTween.moveLocalY(moduleUI, openedPosition, animationDuration).setEase(LeanTweenType.easeOutCubic);
     }
 
     public void DisableUI()
     {
-        moduleUI.SetActive(false);
+        LeanTween.cancel(moduleUI);
+        LeanTween.moveLocalY(moduleUI, closedPosition, animationDuration)
+                    .setEase(LeanTweenType.easeInCubic)
+                    .setOnComplete(() => moduleUI.gameObject.SetActive(false));
     }
 }
