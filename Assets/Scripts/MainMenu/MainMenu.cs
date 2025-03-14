@@ -11,6 +11,32 @@ public class MainMenu : MonoBehaviour
     public GameObject levelButtonPrefab; // Préfab pour un boutton d'option de niveau
     public GameObject levelButtonHolder; // Conteneur qui contient tous les bouttons d'option de niveau
 
+    [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject levelMenu;
+    private static float transitionDuration = 0.3f;
+
+    private float openedMenuPosY;
+    private float closedMenuPosY;
+
+    private void Start()
+    {
+        // Inistialisaiton des posiitons ouverte et fermee des menus
+        openedMenuPosY = 0.0f;
+        closedMenuPosY = levelMenu.transform.localPosition.y;
+    }
+
+    public void OpenLevelMenu()
+    {
+        LeanTween.moveLocalY(mainMenu, closedMenuPosY, transitionDuration).setEase(LeanTweenType.easeOutCubic);
+        LeanTween.moveLocalY(levelMenu, openedMenuPosY, transitionDuration).setEase(LeanTweenType.easeOutCubic);
+    }
+
+    public void OpenMainMenu()
+    {
+        LeanTween.moveLocalY(mainMenu, openedMenuPosY, transitionDuration).setEase(LeanTweenType.easeOutCubic);
+        LeanTween.moveLocalY(levelMenu, closedMenuPosY, transitionDuration).setEase(LeanTweenType.easeOutCubic);
+    }
+
     /// <summary>
     /// Fonction qui récupère la liste de niveau à partir de la base de données et qui affiche la liste des niveaux disponibles dans
     /// le menu de séléction du niveau
