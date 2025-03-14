@@ -4,36 +4,49 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
-public class Module : MonoBehaviour
+public class Module : Interactable
 {
-    public static List<Module> allModules = new List<Module>();
-  
-    // Position pour l'ouverture et la fermeture de l'écran du module
+    // Position pour l'ouverture et la fermeture de l'ï¿½cran du module
     private static float openedPosition = 0.0f;
     private float closedPosition;
+    private bool opened = false;
 
     [SerializeField] private float animationDuration = 0.15f;
     [SerializeField] private GameObject moduleUI;
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         closedPosition = moduleUI.transform.localPosition.y;
-        allModules.Add(this);
         moduleUI.SetActive(false);
     }
 
-    public void EnableUI()
+    private void EnableUI()
     {
         LeanTween.cancel(moduleUI);
         moduleUI.gameObject.SetActive(true);
         LeanTween.moveLocalY(moduleUI, openedPosition, animationDuration).setEase(LeanTweenType.easeOutCubic);
     }
 
-    public void DisableUI()
+    private void DisableUI()
     {
         LeanTween.cancel(moduleUI);
         LeanTween.moveLocalY(moduleUI, closedPosition, animationDuration)
                     .setEase(LeanTweenType.easeInCubic)
                     .setOnComplete(() => moduleUI.gameObject.SetActive(false));
+    }
+
+    public override void Interact()
+    {
+        if (opened)
+        {
+            DisableUI();
+            opened = false;
+        }
+        else
+        {
+            EnableUI();
+            opened = true;
+        }
     }
 }

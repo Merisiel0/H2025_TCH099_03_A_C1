@@ -9,7 +9,7 @@ public class PlayerInteract : MonoBehaviour
     private Module m_currentlyOpenedModule = null;
 
     [Header("Interactions")]
-    [SerializeField] private float m_moduleDetectionRange = 0.5f;
+    [SerializeField] private float m_interactableDetectionRange = 0.5f;
 
     private void Start()
     {
@@ -20,25 +20,30 @@ public class PlayerInteract : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if(m_currentlyOpenedModule == null)
+            if (m_currentlyOpenedModule == null)
             {
-                foreach (Module module in Module.allModules)
+                foreach (Interactable interactableObject in Interactable.allInteractables)
                 {
-                    if (Vector3.Distance(module.transform.position, transform.position) <= m_moduleDetectionRange)
+                    if (Vector3.Distance(interactableObject.transform.position, transform.position) <= m_interactableDetectionRange)
                     {
-                        module.EnableUI();
-                        m_currentlyOpenedModule = module;
-                        m_controller.enabled = false;
-                        break;
+                        interactableObject.Interact();
+
+                        if (interactableObject is Module module)
+                        {
+                            m_currentlyOpenedModule = module;
+                            m_controller.enabled = false;
+                            break;
+                        }
                     }
                 }
-            } else
+            }
+            else
             {
                 CloseCurrentModule();
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             CloseCurrentModule();
         }
@@ -48,7 +53,7 @@ public class PlayerInteract : MonoBehaviour
     {
         if (m_currentlyOpenedModule != null)
         {
-            m_currentlyOpenedModule.DisableUI();
+            m_currentlyOpenedModule.Interact();
             m_currentlyOpenedModule = null;
             m_controller.enabled = true;
         }
@@ -57,6 +62,6 @@ public class PlayerInteract : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, m_moduleDetectionRange);
+        Gizmos.DrawWireSphere(transform.position, m_interactableDetectionRange);
     }
 }
