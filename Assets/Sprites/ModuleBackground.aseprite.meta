@@ -124,7 +124,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: ModuleBackground
     originalName: 
-    pivot: {x: 0.49864498, y: -0.20588234}
+    pivot: {x: 0.49864498, y: -0.13194445}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -132,7 +132,7 @@ ScriptedImporter:
       x: 4
       y: 4
       width: 369
-      height: 272
+      height: 288
     spriteID: 9506074cab9738949aaa6455f87ebbc7
     spriteBone: []
     spriteOutline: []
@@ -156,9 +156,9 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 40
-        y: 56
+        y: 38
         width: 369
-        height: 272
+        height: 288
       spriteId: 9506074cab9738949aaa6455f87ebbc7
     linkedCells: []
     parentIndex: -1
