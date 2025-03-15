@@ -51,6 +51,7 @@ public class PlayerInteract : MonoBehaviour
                         if (interactableObject is Module module)
                         {
                             m_currentlyOpenedModule = module;
+                            m_controller.StopMoving();
                             m_controller.enabled = false;
                         }
                     }
