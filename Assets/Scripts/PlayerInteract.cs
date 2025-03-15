@@ -16,15 +16,35 @@ public class PlayerInteract : MonoBehaviour
         m_controller = GetComponent<PlayerController>();
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Interactable interactableObject = collision.GetComponent<Interactable>();
+        if (interactableObject != null)
+        {
+            interactableObject.OnPlayerTriggerStart();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Interactable interactableObject = collision.GetComponent<Interactable>();
+        if (interactableObject != null && interactableObject.isTrigger)
+        {
+            interactableObject.OnPlayerTriggerEnd();
+        }
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
+            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, m_interactableDetectionRange);
             if (m_currentlyOpenedModule == null)
             {
-                foreach (Interactable interactableObject in Interactable.allInteractables)
+                foreach (Collider2D hit in hits)
                 {
-                    if (Vector3.Distance(interactableObject.transform.position, transform.position) <= m_interactableDetectionRange)
+                    Interactable interactableObject = hit.GetComponent<Interactable>();
+                    if (interactableObject != null)
                     {
                         interactableObject.Interact();
 
@@ -32,7 +52,6 @@ public class PlayerInteract : MonoBehaviour
                         {
                             m_currentlyOpenedModule = module;
                             m_controller.enabled = false;
-                            break;
                         }
                     }
                 }
