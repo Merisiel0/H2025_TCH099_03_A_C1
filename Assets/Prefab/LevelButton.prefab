@@ -527,7 +527,6 @@ GameObject:
   - component: {fileID: 59612068920635134}
   - component: {fileID: 675508153697225421}
   - component: {fileID: 6330989306260390777}
-  - component: {fileID: 868811629573035294}
   m_Layer: 5
   m_Name: LevelButton
   m_TagString: Untagged
@@ -552,9 +551,9 @@ RectTransform:
   - {fileID: 6361483755722995424}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -680, y: 291.0001}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: -680, y: 686.0001}
   m_SizeDelta: {x: 600, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &8422769529634682550
@@ -692,18 +691,6 @@ MonoBehaviour:
   durationText: {fileID: 8111174863923875738}
   regularLayout: {fileID: 3283172239697337159}
   errorLayout: {fileID: 1629104555647238850}
---- !u!114 &868811629573035294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2987715939194567298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e68da034b7559d34aa90150af9ed726b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3283172239697337159
 GameObject:
   m_ObjectHideFlags: 0

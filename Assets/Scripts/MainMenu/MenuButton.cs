@@ -5,9 +5,9 @@ using UnityEngine.EventSystems;
 
 public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    private static Vector3 newScale = new Vector3(1.1f, 1.1f, 1);
+    [SerializeField] private Vector3 newScale;
     private Vector3 oldScale;
-    private static float animationDuration = 0.2f;
+    private static float animationDuration = 0.1f;
 
     public void Start()
     {
@@ -16,11 +16,13 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        LeanTween.cancel(gameObject);
         LeanTween.scale(gameObject, newScale, animationDuration);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        LeanTween.cancel(gameObject);
         LeanTween.scale(gameObject, oldScale, animationDuration);
     }
 }
