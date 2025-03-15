@@ -17,8 +17,12 @@ public class Module : Interactable
     protected override void Start()
     {
         base.Start();
-        closedPosition = moduleUI.transform.localPosition.y;
-        moduleUI.SetActive(false);
+
+        if(moduleUI)
+        {
+            closedPosition = moduleUI.transform.localPosition.y;
+            moduleUI.SetActive(false);
+        }
     }
 
     private void EnableUI()

@@ -31,6 +31,12 @@ public class PlayerController : MonoBehaviour
         m_rb.velocity = m_dir * m_currentSpeed;
     }
 
+    public void StopMoving()
+    {
+        m_rb.velocity = Vector3.zero;
+        m_rb.angularVelocity = 0.0f;
+    }
+
     private void HandlePosition()
     {
         bool isRunning = Input.GetKey(KeyCode.LeftShift);

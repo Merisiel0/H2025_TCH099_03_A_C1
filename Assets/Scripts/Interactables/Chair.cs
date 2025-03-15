@@ -7,12 +7,16 @@ public class Chair : Interactable
 {
     private Rigidbody2D _rb;
 
-    public float turnVelocity = 1000f;
+    public float maxTurnVelocity = 1100f;
+    public float minTurnVelocity = 900f;
+    private float turnVelocity;
 
     protected override void Start()
-    {
+    {   
         base.Start();
         _rb = GetComponent<Rigidbody2D>();
+
+        turnVelocity = Random.Range(minTurnVelocity, maxTurnVelocity);
     }
 
     public override void Interact()
