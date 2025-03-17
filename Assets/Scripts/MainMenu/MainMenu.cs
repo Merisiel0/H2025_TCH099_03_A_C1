@@ -14,6 +14,7 @@ public class MainMenu : MonoBehaviour
 
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject levelMenu;
+    [SerializeField] private FadeAnimation fadeTransition;
     private static float transitionDuration = 0.3f;
 
     private float openedMenuPosY;
@@ -34,7 +35,10 @@ public class MainMenu : MonoBehaviour
 
     public void LoadLevel()
     {
-        SceneManager.LoadScene("MainScene");
+        fadeTransition.Fade(() => 
+        {
+            SceneManager.LoadScene("MainScene");
+        });
     }
 
     public void OpenMainMenu()
