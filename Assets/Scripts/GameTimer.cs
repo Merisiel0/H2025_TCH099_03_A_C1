@@ -34,9 +34,15 @@ public class GameTimer : MonoBehaviour
 
     private void Start()
     {
+        if (LevelDataObject.Exists())
+        {
+            totalTime = LevelDataObject.Get().duration;
+        }
+
         // Initialisation du minuteur
         remainingTime = totalTime;
         regularTextColor = timerText.color;
+        UpdateTimerText();
 
         // On commence le décompte
         StartCoroutine(ExecuteTimer());
