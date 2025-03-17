@@ -9,7 +9,6 @@ public class LightsOnEvent : MonoBehaviour, MissionEventListener
     /// Objets comprenants le système de flashlight
     /// </summary>
     [SerializeField] private List<GameObject> _objects;
-    [SerializeField] private float _fadeDuration = 0.1f;
 
     public void Start()
     {
