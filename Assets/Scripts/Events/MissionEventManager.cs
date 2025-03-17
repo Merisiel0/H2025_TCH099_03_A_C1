@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Liste des évenements possibles dans le jeu durant une mission
+/// Liste des ï¿½venements possibles dans le jeu durant une mission
 /// </summary>
 public enum MissionEvent
 {
-    Blackout,
+    LightsOut,
+    LightsOn,
     ThrustersShutdown,
     ThrustersStart,
 }
 
 /// <summary>
-/// Classe de style sujet observé qui permet d'envoyer les objets à ses abonnées (des observateurs) lorsqu'un événement est lancé.
+/// Classe de style sujet observï¿½ qui permet d'envoyer les objets ï¿½ ses abonnï¿½es (des observateurs) lorsqu'un ï¿½vï¿½nement est lancï¿½.
 /// </summary>
 public class MissionEventManager : MonoBehaviour
 {
@@ -23,21 +24,21 @@ public class MissionEventManager : MonoBehaviour
 
     private void Awake()
     {
-        // Création du signleton
+        // Crï¿½ation du signleton
         if (instance == null) instance = this;
         else Destroy(this);
 
-        // Création de la liste d'observeurs
+        // Crï¿½ation de la liste d'observeurs
         listeners = new List<MissionEventListener>();
     }
 
     /// <summary>
-    /// Fonction qui permet de lancer et de distribuer un événement à tous les observateurs.
+    /// Fonction qui permet de lancer et de distribuer un ï¿½vï¿½nement ï¿½ tous les observateurs.
     /// </summary>
-    /// <param name="e">Objet de type MissionEvent qui correspond à un évéenement durant une mission.</param>
+    /// <param name="e">Objet de type MissionEvent qui correspond ï¿½ un ï¿½vï¿½enement durant une mission.</param>
     public static void SendEvent(MissionEvent e)
     {
-        // Envoie à chacun des observeur.
+        // Envoie ï¿½ chacun des observeur.
         foreach(MissionEventListener listener in instance.listeners)
         {
             listener.OnNotify(e);
@@ -45,9 +46,9 @@ public class MissionEventManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Fonction qui permet à un observeur de s'inscrire comme un abonné.
+    /// Fonction qui permet ï¿½ un observeur de s'inscrire comme un abonnï¿½.
     /// </summary>
-    /// <param name="listener">L'observeur à ajouter à la liste d'abonné</param>
+    /// <param name="listener">L'observeur ï¿½ ajouter ï¿½ la liste d'abonnï¿½</param>
     public static void AddEventListener(MissionEventListener listener)
     {
         instance.listeners.Add(listener);
@@ -55,13 +56,13 @@ public class MissionEventManager : MonoBehaviour
 }
 
 /// <summary>
-/// Interface qu'un observeur peut implémenter pour écouter les événements en cours dans la mission.
+/// Interface qu'un observeur peut implï¿½menter pour ï¿½couter les ï¿½vï¿½nements en cours dans la mission.
 /// </summary>
 public interface MissionEventListener
 {
     /// <summary>
-    /// Fonction appelé lors du lancement d'un événement.
+    /// Fonction appelï¿½ lors du lancement d'un ï¿½vï¿½nement.
     /// </summary>
-    /// <param name="e">L'événement lancé.</param>
+    /// <param name="e">L'ï¿½vï¿½nement lancï¿½.</param>
     public void OnNotify(MissionEvent e);
 }
