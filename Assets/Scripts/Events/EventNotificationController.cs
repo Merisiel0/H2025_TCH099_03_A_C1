@@ -23,16 +23,21 @@ public class EventNotificationController : MonoBehaviour, MissionEventListener
 
     public void Update()
     {
-        // TODO: RETIRER LE TEST
-        if(Input.GetKeyDown("1"))
+        // TODO: RETIRER LES TEST
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            MissionEventManager.SendEvent(MissionEvent.Blackout);
+            MissionEventManager.SendEvent(MissionEvent.LightsOut);
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            MissionEventManager.SendEvent(MissionEvent.LightsOn);
         }
     }
 
     public void OnNotify(MissionEvent e)
     {
-        if(MissionEventManager.IsImportant(e))
+        if (MissionEventManager.IsImportant(e))
         {
             AddEVent(e);
         }

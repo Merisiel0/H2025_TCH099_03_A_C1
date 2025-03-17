@@ -28,7 +28,7 @@ public class MissionEventManager : MonoBehaviour
     /// Liste qui contient tous les events principaux, notament les déclencheurs et non les évents interne
     /// </summary>
     private static MissionEvent[] importantEvents = {
-        MissionEvent.Blackout,
+        MissionEvent.LightsOn,
     };
 
     private static MissionEventManager instance; // Instance du singleton statique
