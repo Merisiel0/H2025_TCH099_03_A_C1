@@ -279,6 +279,8 @@ GameObject:
   - component: {fileID: 4069783885180870829}
   - component: {fileID: 1305570755157319874}
   - component: {fileID: 3200348100598035276}
+  - component: {fileID: 4122234077324343817}
+  - component: {fileID: 7831945654301224526}
   m_Layer: 5
   m_Name: EventNotification
   m_TagString: Untagged
@@ -346,6 +348,32 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4122234077324343817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4563608365371551625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7e5862f24abac049a32ca28d4e2bf99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameText: {fileID: 3865843582052855858}
+  durationText: {fileID: 683554702824074790}
+--- !u!225 &7831945654301224526
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4563608365371551625}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &5570473890403285350
 GameObject:
   m_ObjectHideFlags: 0
