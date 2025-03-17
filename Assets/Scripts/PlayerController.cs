@@ -23,6 +23,14 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         HandleRotation();
+
+        if(Input.GetKeyDown(KeyCode.Alpha9)){
+            MissionEventManager.SendEvent(MissionEvent.LightsOut);
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha8)){
+            MissionEventManager.SendEvent(MissionEvent.LightsOn);
+        }
     }
 
     private void FixedUpdate()

@@ -5,25 +5,27 @@ using System.Linq;
 using System.ComponentModel;
 
 /// <summary>
-/// Liste des �venements possibles dans le jeu durant une mission
+/// Liste des ï¿½venements possibles dans le jeu durant une mission
 /// </summary>
 public enum MissionEvent
 {
-    [Description("Panne des g�n�rateurs")]
-    Blackout,
+    [Description("Panne des générateurs")]
+    LightsOut,
+    [Description("Redémarrage des générateurs")]
+    LightsOn,
     [Description("Panne des propulseurs")]
     ThrustersShutdown,
-    [Description("Red�marrage des propulseurs")]
+    [Description("Redémarrage des propulseurs")]
     ThrustersStart,
 }
 
 /// <summary>
-/// Classe de style sujet observ� qui permet d'envoyer les objets � ses abonn�es (des observateurs) lorsqu'un �v�nement est lanc�.
+/// Classe de style sujet observï¿½ qui permet d'envoyer les objets ï¿½ ses abonnï¿½es (des observateurs) lorsqu'un ï¿½vï¿½nement est lancï¿½.
 /// </summary>
 public class MissionEventManager : MonoBehaviour
 {
     /// <summary>
-    /// Liste qui contient tous les events principaux, notament les d�clencheurs et non les �vents interne
+    /// Liste qui contient tous les events principaux, notament les déclencheurs et non les évents interne
     /// </summary>
     private static MissionEvent[] importantEvents = {
         MissionEvent.Blackout,
@@ -44,21 +46,21 @@ public class MissionEventManager : MonoBehaviour
 
     private void Awake()
     {
-        // Cr�ation du signleton
+        // Crï¿½ation du signleton
         if (instance == null) instance = this;
         else Destroy(this);
 
-        // Cr�ation de la liste d'observeurs
+        // Crï¿½ation de la liste d'observeurs
         listeners = new List<MissionEventListener>();
     }
 
     /// <summary>
-    /// Fonction qui permet de lancer et de distribuer un �v�nement � tous les observateurs.
+    /// Fonction qui permet de lancer et de distribuer un ï¿½vï¿½nement ï¿½ tous les observateurs.
     /// </summary>
-    /// <param name="e">Objet de type MissionEvent qui correspond � un �v�enement durant une mission.</param>
+    /// <param name="e">Objet de type MissionEvent qui correspond ï¿½ un ï¿½vï¿½enement durant une mission.</param>
     public static void SendEvent(MissionEvent e)
     {
-        // Envoie � chacun des observeur.
+        // Envoie ï¿½ chacun des observeur.
         foreach(MissionEventListener listener in instance.listeners)
         {
             listener.OnNotify(e);
@@ -66,9 +68,9 @@ public class MissionEventManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Fonction qui permet � un observeur de s'inscrire comme un abonn�.
+    /// Fonction qui permet ï¿½ un observeur de s'inscrire comme un abonnï¿½.
     /// </summary>
-    /// <param name="listener">L'observeur � ajouter � la liste d'abonn�</param>
+    /// <param name="listener">L'observeur ï¿½ ajouter ï¿½ la liste d'abonnï¿½</param>
     public static void AddEventListener(MissionEventListener listener)
     {
         instance.listeners.Add(listener);
@@ -76,13 +78,13 @@ public class MissionEventManager : MonoBehaviour
 }
 
 /// <summary>
-/// Interface qu'un observeur peut impl�menter pour �couter les �v�nements en cours dans la mission.
+/// Interface qu'un observeur peut implï¿½menter pour ï¿½couter les ï¿½vï¿½nements en cours dans la mission.
 /// </summary>
 public interface MissionEventListener
 {
     /// <summary>
-    /// Fonction appel� lors du lancement d'un �v�nement.
+    /// Fonction appelï¿½ lors du lancement d'un ï¿½vï¿½nement.
     /// </summary>
-    /// <param name="e">L'�v�nement lanc�.</param>
+    /// <param name="e">L'ï¿½vï¿½nement lancï¿½.</param>
     public void OnNotify(MissionEvent e);
 }
