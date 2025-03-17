@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Classe qui permet de gérer la logique des boutons et des menus du menu principal (écran d'acceuil)
@@ -29,6 +30,11 @@ public class MainMenu : MonoBehaviour
     {
         LeanTween.moveLocalY(mainMenu, closedMenuPosY, transitionDuration).setEase(LeanTweenType.easeOutCubic);
         LeanTween.moveLocalY(levelMenu, openedMenuPosY, transitionDuration).setEase(LeanTweenType.easeOutCubic);
+    }
+
+    public void LoadLevel()
+    {
+        SceneManager.LoadScene("MainScene");
     }
 
     public void OpenMainMenu()
@@ -63,7 +69,7 @@ public class MainMenu : MonoBehaviour
                 {
                     LevelOptionButton levelOption = Instantiate(levelButtonPrefab).GetComponent<LevelOptionButton>();
                     levelOption.transform.SetParent(levelButtonHolder.transform);
-                    levelOption.Init(level);
+                    levelOption.Init(this, level);
                 }
             } else
             {

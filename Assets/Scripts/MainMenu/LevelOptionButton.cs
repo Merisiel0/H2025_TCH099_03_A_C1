@@ -14,6 +14,7 @@ using UnityEngine.EventSystems;
 public class LevelOptionButton : MonoBehaviour, IPointerClickHandler
 {
     private LevelData levelData;
+    private MainMenu mainMenu;
 
     public TextMeshProUGUI headerText;
     public TextMeshProUGUI descriptionText;
@@ -35,9 +36,10 @@ public class LevelOptionButton : MonoBehaviour, IPointerClickHandler
     /// On initialise les champs de texte avec un object LevelData qui contient les informations pour un niveau.
     /// </summary>
     /// <param name="data">Les informations du niveau.</param>
-    public void Init(LevelData data)
+    public void Init(MainMenu mainMenu, LevelData data)
     {
-        levelData = data;
+        this.mainMenu = mainMenu;
+        this.levelData = data;
 
         headerText.SetText(data.nom + " - " + data.difficulty);
         descriptionText.SetText(data.description);
@@ -61,11 +63,6 @@ public class LevelOptionButton : MonoBehaviour, IPointerClickHandler
     /// 
     public void OnPointerClick(PointerEventData eventData)
     {
-        ChargerNiveau();
-    }
-
-    public void ChargerNiveau()
-    {
-        SceneManager.LoadScene("MainScene");
+        mainMenu.LoadLevel();
     }
 }
