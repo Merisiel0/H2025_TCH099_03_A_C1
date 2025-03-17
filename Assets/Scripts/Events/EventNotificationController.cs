@@ -10,6 +10,7 @@ public class EventNotificationController : MonoBehaviour, MissionEventListener
     private List<EventNotification> eventList;
 
     [SerializeField] private GameObject notificationPrefab;
+    public Color dangerColor = Color.yellow;
 
     public void Awake()
     {

@@ -51,6 +51,11 @@ public class EventNotification : MonoBehaviour
 
     private void UpdateDurationText()
     {
+        if(duration <= 5)
+        {
+            durationText.color = controller.dangerColor;
+        }
+
         durationText.SetText(duration + "s");
     }
 
