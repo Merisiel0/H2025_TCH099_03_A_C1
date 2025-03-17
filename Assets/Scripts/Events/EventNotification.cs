@@ -8,6 +8,9 @@ public class EventNotification : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI durationText;
+    private EventNotificationController controller;
+
+    private int duration;
 
     private CanvasGroup canvasGroup;
 
@@ -30,14 +33,40 @@ public class EventNotification : MonoBehaviour
     {
         LeanTween.alphaCanvas(canvasGroup, 0.0f, 0.3f).setOnComplete(()=>
         {
-            // TODO: NOTIFIER LE NOTIFICATION CONTROLLER
-            Destroy(gameObject);
+            controller.EndEvent(this);
         });
     }
 
-    public void Init(string name, int duration)
+    public void Init(EventNotificationController controller, string name, int duration)
     {
+        this.controller = controller;
+
+        this.duration = duration;
+        UpdateDurationText();
+
+        StartCoroutine(ExecuteTimer());
+
         nameText.SetText(name);
+    }
+
+    private void UpdateDurationText()
+    {
         durationText.SetText(duration + "s");
+    }
+
+    IEnumerator ExecuteTimer()
+    {
+        if (duration > 0)
+        {
+            yield return new WaitForSeconds(1.0f);
+            duration -= 1;
+            UpdateDurationText();
+            StartCoroutine(ExecuteTimer());
+        }
+        else
+        {
+            yield return null;
+            EndEvent();
+        }
     }
 }

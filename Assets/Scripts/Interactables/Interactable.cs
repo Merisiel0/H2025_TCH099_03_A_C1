@@ -25,7 +25,6 @@ public abstract class Interactable : MonoBehaviour
 
     public virtual void OnPlayerTriggerEnd() 
     {
-        Debug.Log(name);
         isTrigger = false;
         if (outline)
         {

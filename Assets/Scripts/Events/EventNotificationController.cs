@@ -1,5 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EventNotificationController : MonoBehaviour, MissionEventListener
@@ -35,12 +38,17 @@ public class EventNotificationController : MonoBehaviour, MissionEventListener
         }
     }
 
+    public void EndEvent(EventNotification e)
+    {
+        eventList.Remove(e);
+        Destroy(e.gameObject);
+    }
+
     private void AddEVent(MissionEvent e)
     {
         EventNotification notification = Instantiate(notificationPrefab).GetComponent<EventNotification>();
         notification.transform.SetParent(transform);
-        // TODO: Récuperer la durée avec l'api
-        notification.Init(e.ToString(), 30);
+        notification.Init(this, Enumerations.GetDescription(e), 5);
         eventList.Add(notification);
     }
 }

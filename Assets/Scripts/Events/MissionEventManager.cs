@@ -2,14 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System.ComponentModel;
 
 /// <summary>
 /// Liste des évenements possibles dans le jeu durant une mission
 /// </summary>
 public enum MissionEvent
 {
+    [Description("Panne des générateurs")]
     Blackout,
+    [Description("Panne des propulseurs")]
     ThrustersShutdown,
+    [Description("Redémarrage des propulseurs")]
     ThrustersStart,
 }
 
