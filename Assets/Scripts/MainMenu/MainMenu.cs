@@ -33,10 +33,14 @@ public class MainMenu : MonoBehaviour
         LeanTween.moveLocalY(levelMenu, openedMenuPosY, transitionDuration).setEase(LeanTweenType.easeOutCubic);
     }
 
-    public void LoadLevel()
-    {
+    public void LoadLevel(LevelData data)
+    {   
         fadeTransition.Fade(() => 
         {
+            LevelDataObject dataContainer = new GameObject("LevelDataContainer")
+                .AddComponent<LevelDataObject>()
+                .Init(data);
+
             SceneManager.LoadScene("MainScene");
         });
     }

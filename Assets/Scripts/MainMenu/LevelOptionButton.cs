@@ -63,6 +63,6 @@ public class LevelOptionButton : MonoBehaviour, IPointerClickHandler
     /// 
     public void OnPointerClick(PointerEventData eventData)
     {
-        mainMenu.LoadLevel();
+        mainMenu.LoadLevel(levelData);
     }
 }
