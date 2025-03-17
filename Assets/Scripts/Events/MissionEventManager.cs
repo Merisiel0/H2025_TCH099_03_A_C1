@@ -1,14 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using System.ComponentModel;
 
 /// <summary>
 /// Liste des évenements possibles dans le jeu durant une mission
 /// </summary>
 public enum MissionEvent
 {
+    [Description("Panne des générateurs")]
     Blackout,
+    [Description("Panne des propulseurs")]
     ThrustersShutdown,
+    [Description("Redémarrage des propulseurs")]
     ThrustersStart,
 }
 
@@ -17,9 +22,25 @@ public enum MissionEvent
 /// </summary>
 public class MissionEventManager : MonoBehaviour
 {
+    /// <summary>
+    /// Liste qui contient tous les events principaux, notament les déclencheurs et non les évents interne
+    /// </summary>
+    private static MissionEvent[] importantEvents = {
+        MissionEvent.Blackout,
+    };
+
     private static MissionEventManager instance; // Instance du singleton statique
 
     private List<MissionEventListener> listeners; // Liste des observeurs
+
+    public static bool IsImportant(MissionEvent targetEvent)
+    {
+        if(importantEvents.Any(importantEvent => targetEvent == importantEvent))
+        {
+            return true;
+        }
+        return false;
+    }
 
     private void Awake()
     {
