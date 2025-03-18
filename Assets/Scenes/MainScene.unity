@@ -748,7 +748,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 183
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -2326,6 +2326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   notificationPrefab: {fileID: 4563608365371551625, guid: 5ba7bec18ce58ba46a55387517c10309, type: 3}
+  dangerColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!4 &960232611 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4141794887681035707, guid: 7dc8f678511ed8f4c91d0abe88d140de, type: 3}
@@ -2531,7 +2532,7 @@ GameObject:
   - component: {fileID: 1071245662}
   m_Layer: 0
   m_Name: player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8736,7 +8737,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1896332579}
   - component: {fileID: 1896332582}
-  - component: {fileID: 1896332581}
   - component: {fileID: 1896332580}
   m_Layer: 0
   m_Name: Lightmask
@@ -8804,14 +8804,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!81 &1896332581
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1896332578}
-  m_Enabled: 1
 --- !u!20 &1896332582
 Camera:
   m_ObjectHideFlags: 0
