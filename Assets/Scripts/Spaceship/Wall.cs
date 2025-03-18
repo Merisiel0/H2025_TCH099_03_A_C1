@@ -13,8 +13,8 @@ public class Wall : MonoBehaviour
     {
         _collider = GetComponent<BoxCollider2D>();
 
-        center.x = transform.position.x;// + _collider.bounds.extents.x;
-        center.y = transform.position.y;// - _collider.bounds.extents.y;
+        center.x = transform.position.x;
+        center.y = transform.position.y;
 
         left = transform.position.x - _collider.bounds.extents.x;
         top = transform.position.y + _collider.bounds.extents.y;

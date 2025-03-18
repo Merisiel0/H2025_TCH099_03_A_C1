@@ -15,7 +15,6 @@ public class WallShadowCamera : MonoBehaviour
     [SerializeField] private Material GLDraw;
 
     private GameObject _player;
-    public float z = 0;
 
     void Start()
     {
@@ -88,21 +87,21 @@ public class WallShadowCamera : MonoBehaviour
         GL.Begin(GL.TRIANGLES);
         GL.Color(Color.black);
 
-        GL.Vertex(new Vector3(x1, y1, z));
-        GL.Vertex(new Vector3(x2, y1, z));
-        GL.Vertex(new Vector3(projx1, projy1, z));
+        GL.Vertex(new Vector3(x1, y1, 0));
+        GL.Vertex(new Vector3(x2, y1, 0));
+        GL.Vertex(new Vector3(projx1, projy1, 0));
 
-        GL.Vertex(new Vector3(x1, y1, z));
-        GL.Vertex(new Vector3(projx2, projy1, z));
-        GL.Vertex(new Vector3(projx1, projy1, z));
+        GL.Vertex(new Vector3(x1, y1, 0));
+        GL.Vertex(new Vector3(projx2, projy1, 0));
+        GL.Vertex(new Vector3(projx1, projy1, 0));
 
-        GL.Vertex(new Vector3(x1, y1, z));
-        GL.Vertex(new Vector3(x1, y2, z));
-        GL.Vertex(new Vector3(projx2, projy2, z));
+        GL.Vertex(new Vector3(x1, y1, 0));
+        GL.Vertex(new Vector3(x1, y2, 0));
+        GL.Vertex(new Vector3(projx2, projy2, 0));
 
-        GL.Vertex(new Vector3(x1, y1, z));
-        GL.Vertex(new Vector3(projx2, projy1, z));
-        GL.Vertex(new Vector3(projx2, projy2, z));
+        GL.Vertex(new Vector3(x1, y1, 0));
+        GL.Vertex(new Vector3(projx2, projy1, 0));
+        GL.Vertex(new Vector3(projx2, projy2, 0));
 
         GL.End();
     }
