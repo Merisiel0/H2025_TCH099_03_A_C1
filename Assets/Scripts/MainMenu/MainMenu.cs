@@ -1,19 +1,24 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Classe qui permet de gérer la logique des boutons et des menus du menu principal (écran d'acceuil)
+/// Classe qui permet de gï¿½rer la logique des boutons et des menus du menu principal (ï¿½cran d'acceuil)
 /// </summary>
 public class MainMenu : MonoBehaviour
 {
-    public GameObject levelButtonPrefab; // Préfab pour un boutton d'option de niveau
+    public GameObject levelButtonPrefab; // Prï¿½fab pour un boutton d'option de niveau
     public GameObject levelButtonHolder; // Conteneur qui contient tous les bouttons d'option de niveau
 
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject levelMenu;
+    [SerializeField] private GameObject connexionMenu;
+    [SerializeField] private GameObject inscriptionMenu;
+    private GameObject currentlyOpenedMenu;
+
     [SerializeField] private FadeAnimation fadeTransition;
     private static float transitionDuration = 0.3f;
 
@@ -22,20 +27,48 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        // Inistialisaiton des posiitons ouverte et fermee des menus
+        // Inistialisaiton des positons ouverte et fermee des menus
         openedMenuPosY = 0.0f;
         closedMenuPosY = levelMenu.transform.localPosition.y;
+        currentlyOpenedMenu = mainMenu;
+    }
+
+    public void OpenMainMenu()
+    {
+        // open menu
+        LeanTween.moveLocalY(mainMenu, openedMenuPosY, transitionDuration).setEase(LeanTweenType.easeOutCubic);
+
+        // close currently opened menu
+        LeanTween.moveLocalY(currentlyOpenedMenu, closedMenuPosY, transitionDuration).setEase(LeanTweenType.easeOutCubic);
+
+        // set newly opened menu
+        currentlyOpenedMenu = mainMenu;
     }
 
     public void OpenLevelMenu()
     {
-        LeanTween.moveLocalY(mainMenu, closedMenuPosY, transitionDuration).setEase(LeanTweenType.easeOutCubic);
         LeanTween.moveLocalY(levelMenu, openedMenuPosY, transitionDuration).setEase(LeanTweenType.easeOutCubic);
+        LeanTween.moveLocalY(currentlyOpenedMenu, closedMenuPosY, transitionDuration).setEase(LeanTweenType.easeOutCubic);
+        currentlyOpenedMenu = levelMenu;
+    }
+
+    public void OpenConnexionMenu()
+    {
+        LeanTween.moveLocalY(connexionMenu, openedMenuPosY, transitionDuration).setEase(LeanTweenType.easeOutCubic);
+        LeanTween.moveLocalY(currentlyOpenedMenu, closedMenuPosY, transitionDuration).setEase(LeanTweenType.easeOutCubic);
+        currentlyOpenedMenu = connexionMenu;
+    }
+
+    public void OpenInscriptionMenu()
+    {
+        LeanTween.moveLocalY(inscriptionMenu, openedMenuPosY, transitionDuration).setEase(LeanTweenType.easeOutCubic);
+        LeanTween.moveLocalY(currentlyOpenedMenu, closedMenuPosY, transitionDuration).setEase(LeanTweenType.easeOutCubic);
+        currentlyOpenedMenu = inscriptionMenu;
     }
 
     public void LoadLevel(LevelData data)
-    {   
-        fadeTransition.Fade(() => 
+    {
+        fadeTransition.Fade(() =>
         {
             LevelDataObject dataContainer = new GameObject("LevelDataContainer")
                 .AddComponent<LevelDataObject>()
@@ -45,19 +78,13 @@ public class MainMenu : MonoBehaviour
         });
     }
 
-    public void OpenMainMenu()
-    {
-        LeanTween.moveLocalY(mainMenu, openedMenuPosY, transitionDuration).setEase(LeanTweenType.easeOutCubic);
-        LeanTween.moveLocalY(levelMenu, closedMenuPosY, transitionDuration).setEase(LeanTweenType.easeOutCubic);
-    }
-
     /// <summary>
-    /// Fonction qui récupère la liste de niveau à partir de la base de données et qui affiche la liste des niveaux disponibles dans
-    /// le menu de séléction du niveau
+    /// Fonction qui rï¿½cupï¿½re la liste de niveau ï¿½ partir de la base de donnï¿½es et qui affiche la liste des niveaux disponibles dans
+    /// le menu de sï¿½lï¿½ction du niveau
     /// </summary>
     public void LoadLevelsData()
     {
-        foreach(Transform child in levelButtonHolder.transform)
+        foreach (Transform child in levelButtonHolder.transform)
         {
             Destroy(child.gameObject);
         }
@@ -79,7 +106,8 @@ public class MainMenu : MonoBehaviour
                     levelOption.transform.SetParent(levelButtonHolder.transform);
                     levelOption.Init(this, level);
                 }
-            } else
+            }
+            else
             {
                 LevelOptionButton levelOption = Instantiate(levelButtonPrefab).GetComponent<LevelOptionButton>();
                 levelOption.transform.SetParent(levelButtonHolder.transform);
@@ -94,5 +122,9 @@ public class MainMenu : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 }
