@@ -13,6 +13,21 @@ public class BipolarityModule : MonoBehaviour, MissionEventListener
     private int currentSelection = 0;
     [SerializeField] private TextMeshProUGUI[] texts = new TextMeshProUGUI[4];
 
+    public void OnConfirm()
+    {
+        // TODO IMPL.
+    }
+
+    public void OnDelChar()
+    {
+        // TODO IMPL
+    }
+
+    public void OnAddChar(char ch)
+    {
+        // TODO IMPL.
+    }
+
     public void OnClickCaseButton()
     {
         Debug.Log("pressed");
