@@ -20,7 +20,7 @@ public class BipolarityModule : MonoBehaviour, MissionEventListener
         texts[currentSelection].color = regularTextColor;
 
         currentSelection++;
-        if(currentSelection > texts.Length)
+        if(currentSelection > texts.Length - 1)
         {
             currentSelection = 0;
         }
