@@ -13,6 +13,9 @@ public class BipolarityModule : MonoBehaviour, MissionEventListener
     private int currentSelection = 0;
     [SerializeField] private TextMeshProUGUI[] texts = new TextMeshProUGUI[4];
 
+    private int currentCharIndex = 0;
+    [SerializeField] private TextMeshProUGUI[] inputTexts = new TextMeshProUGUI[8];
+
     public void OnConfirm()
     {
         // TODO IMPL.
@@ -20,12 +23,20 @@ public class BipolarityModule : MonoBehaviour, MissionEventListener
 
     public void OnDelChar()
     {
-        // TODO IMPL
+        if(currentCharIndex > 0)
+        {
+            currentCharIndex--;
+            inputTexts[currentCharIndex].SetText("");
+        }
     }
 
-    public void OnAddChar(char ch)
+    public void OnAddChar(string ch)
     {
-        // TODO IMPL.
+        if(currentCharIndex < inputTexts.Length)
+        {
+            inputTexts[currentCharIndex].SetText(ch);
+            currentCharIndex++;
+        }
     }
 
     public void OnClickCaseButton()
@@ -65,6 +76,11 @@ public class BipolarityModule : MonoBehaviour, MissionEventListener
     {
         data = new BipolarityModuleData();
 
+        foreach (TextMeshProUGUI text in inputTexts)
+        {
+            text.text = "";
+        }
+
         selectedTextColor = texts[0].color;
         regularTextColor = texts[1].color;
 
@@ -73,6 +89,14 @@ public class BipolarityModule : MonoBehaviour, MissionEventListener
 
     public void InitModule(BipolarityModuleData newData)
     {
+        currentCharIndex = 0;
+        currentSelection = 0;
+
+        foreach (TextMeshProUGUI text in inputTexts)
+        {
+            text.text = "";
+        }
+
         data = newData.Init();
 
         texts[0].SetText(data.lettre1);
