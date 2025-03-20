@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ElectricPanelModule : MonoBehaviour, MissionEventListener
+public class ElectricPanelModule : ModuleUI, MissionEventListener
 {
     private WireModuleData data;
 
@@ -14,6 +14,8 @@ public class ElectricPanelModule : MonoBehaviour, MissionEventListener
 
     public void Start()
     {
+        base.Start();
+
         data = new WireModuleData();
         MissionEventManager.AddEventListener(this);
     }
@@ -54,10 +56,12 @@ public class ElectricPanelModule : MonoBehaviour, MissionEventListener
         if(index != data.solution)
         {
             MissionEventManager.SendEvent(MissionEvent.PlayerEventFailed);
+            PlayerInteract.StopInteractions();
         } 
         else
         {
             MissionEventManager.SendEvent(MissionEvent.ElectricRestart);
+            PlayerInteract.StopInteractions();
         }
     }
 

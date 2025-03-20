@@ -6,50 +6,25 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class Module : Interactable
 {
-    // Position pour l'ouverture et la fermeture de l'�cran du module
-    private static float openedPosition = 0.0f;
-    private float closedPosition;
+    [SerializeField] private ModuleUI moduleUI;
     private bool opened = false;
-
-    [SerializeField] private float animationDuration = 0.15f;
-    [SerializeField] private GameObject moduleUI;
 
     protected override void Start()
     {
         base.Start();
-
-        if(moduleUI)
-        {
-            closedPosition = moduleUI.transform.localPosition.y;
-            moduleUI.SetActive(false);
-        }
-    }
-
-    private void EnableUI()
-    {
-        LeanTween.cancel(moduleUI);
-        moduleUI.gameObject.SetActive(true);
-        LeanTween.moveLocalY(moduleUI, openedPosition, animationDuration).setEase(LeanTweenType.easeOutCubic);
-    }
-
-    private void DisableUI()
-    {
-        LeanTween.cancel(moduleUI);
-        LeanTween.moveLocalY(moduleUI, closedPosition, animationDuration)
-                    .setEase(LeanTweenType.easeInCubic)
-                    .setOnComplete(() => moduleUI.gameObject.SetActive(false));
     }
 
     public override void Interact()
     {
         if (opened)
         {
-            DisableUI();
+            moduleUI.DisableUI();
             opened = false;
         }
         else
         {
-            EnableUI();
+            moduleUI.gameObject.SetActive(true); // Protection en cas de problème
+            moduleUI.EnableUI();
             opened = true;
         }
     }

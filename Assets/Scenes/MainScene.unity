@@ -2625,8 +2625,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 954048247}
-  animationDuration: 0.15
-  moduleUI: {fileID: 1254320857}
+  moduleUI: {fileID: 1254320861}
 --- !u!1 &643517374
 GameObject:
   m_ObjectHideFlags: 0
@@ -3106,7 +3105,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 827613468}
-  animationDuration: 0.15
   moduleUI: {fileID: 883217263}
 --- !u!1 &815945035
 GameObject:
@@ -4561,6 +4559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a13caedd5e13c14c85531bb400b63b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animationDuration: 0.15
   wirePrefab: {fileID: 4804577896520001542, guid: 3c968a1a6381f934fb50e1a144376a59, type: 3}
   wireImages:
   - {fileID: 1477828791, guid: 55d7d4ecab76f8444a1fff6648308057, type: 3}
@@ -4879,9 +4878,9 @@ RectTransform:
   - {fileID: 1745172391}
   m_Father: {fileID: 1983689211}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 296.875, y: -60}
   m_SizeDelta: {x: 115, y: 115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1008886329
@@ -5994,8 +5993,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 1154569340}
-  animationDuration: 0.1
-  moduleUI: {fileID: 986383815}
+  moduleUI: {fileID: 986383819}
 --- !u!61 &1147494284
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6159,9 +6157,9 @@ RectTransform:
   - {fileID: 371890100}
   m_Father: {fileID: 1983689211}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 415.625, y: -60}
   m_SizeDelta: {x: 115, y: 115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1165940638
@@ -6307,7 +6305,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1254320858
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6384,6 +6382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7f7ab215a8dc9f428e8badaf69f3fe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animationDuration: 0.15
   texts:
   - {fileID: 2001630514}
   - {fileID: 184907108}
@@ -11262,9 +11261,9 @@ RectTransform:
   - {fileID: 1755466536}
   m_Father: {fileID: 1983689211}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 178.125, y: -60}
   m_SizeDelta: {x: 115, y: 115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1300633452
@@ -12771,9 +12770,9 @@ RectTransform:
   - {fileID: 76918235}
   m_Father: {fileID: 1983689211}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 59.375, y: -60}
   m_SizeDelta: {x: 115, y: 115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1766646501
@@ -14288,7 +14287,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 1460640436}
-  animationDuration: 0.15
   moduleUI: {fileID: 478457765}
 --- !u!58 &2097149760
 CircleCollider2D:

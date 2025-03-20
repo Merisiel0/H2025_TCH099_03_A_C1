@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class BipolarityModule : MonoBehaviour, MissionEventListener
+public class BipolarityModule : ModuleUI, MissionEventListener
 {
     BipolarityModuleData data;
 
@@ -27,9 +27,11 @@ public class BipolarityModule : MonoBehaviour, MissionEventListener
         if(input != data.solution)
         {
             MissionEventManager.SendEvent(MissionEvent.PlayerEventFailed);
+            PlayerInteract.StopInteractions();
         } else
         {
             MissionEventManager.SendEvent(MissionEvent.ThrustersStart);
+            PlayerInteract.StopInteractions();
         }
     }
 
@@ -86,6 +88,8 @@ public class BipolarityModule : MonoBehaviour, MissionEventListener
 
     private void Start()
     {
+        base.Start();
+
         data = new BipolarityModuleData();
 
         foreach (TextMeshProUGUI text in inputTexts)
