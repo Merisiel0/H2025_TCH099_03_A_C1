@@ -18,7 +18,19 @@ public class BipolarityModule : MonoBehaviour, MissionEventListener
 
     public void OnConfirm()
     {
-        // TODO IMPL.
+        string input = "";
+        foreach(TextMeshProUGUI text in inputTexts)
+        {
+            input += text.text;
+        }
+
+        if(input != data.solution)
+        {
+            MissionEventManager.SendEvent(MissionEvent.PlayerEventFailed);
+        } else
+        {
+            MissionEventManager.SendEvent(MissionEvent.ThrustersStart);
+        }
     }
 
     public void OnDelChar()
@@ -56,8 +68,7 @@ public class BipolarityModule : MonoBehaviour, MissionEventListener
 
     public void OnNotify(MissionEvent e)
     {
-        // TODO CHANGER POUR LE BON EVENT
-        if(e == MissionEvent.LightsOut)
+        if(e == MissionEvent.ThrustersShutdown)
         {
             BipolarityModuleData data = new BipolarityModuleData();
             data.id_ = 1;
@@ -66,6 +77,7 @@ public class BipolarityModule : MonoBehaviour, MissionEventListener
             data.lettre3 = "R";
             data.lettre4 = "T";
             data.caseChoisie = 2;
+            data.solution = "01101010";
             data.couleur = "0000FF";
 
             InitModule(data);
