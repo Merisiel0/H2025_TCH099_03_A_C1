@@ -9,6 +9,7 @@ public class BipolarityModule : ModuleUI, MissionEventListener
 
     private Color regularTextColor;
     private Color selectedTextColor;
+    private Color goodCaseColor;
 
     private int currentSelection = 0;
     [SerializeField] private TextMeshProUGUI[] texts = new TextMeshProUGUI[4];
@@ -55,8 +56,6 @@ public class BipolarityModule : ModuleUI, MissionEventListener
 
     public void OnClickCaseButton()
     {
-        Debug.Log("pressed");
-
         texts[currentSelection].color = regularTextColor;
 
         currentSelection++;
@@ -65,7 +64,13 @@ public class BipolarityModule : ModuleUI, MissionEventListener
             currentSelection = 0;
         }
 
-        texts[currentSelection].color = selectedTextColor;
+        if(data.caseChoisie - 1 == currentSelection)
+        {
+            texts[currentSelection].color = goodCaseColor;
+        } else
+        {
+            texts[currentSelection].color = selectedTextColor;
+        }
     }
 
     public void OnNotify(MissionEvent e)
@@ -114,6 +119,7 @@ public class BipolarityModule : ModuleUI, MissionEventListener
         }
 
         data = newData.Init();
+        goodCaseColor = data.objCouleur;
 
         texts[0].SetText(data.lettre1);
         texts[1].SetText(data.lettre2);
