@@ -9,7 +9,6 @@ public class MissionManager : MonoBehaviour, MissionEventListener
     private AudioSource audioSource;
     [SerializeField] private AudioClip moduleFailedSound;
 
-
     [SerializeField] private FadeAnimation fade;
     [SerializeField] private FadeAnimation fadeOverlay;
 
