@@ -27,12 +27,12 @@ public class EventNotificationController : MonoBehaviour, MissionEventListener
         // TODO: RETIRER LES TEST
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            MissionEventManager.SendEvent(MissionEvent.ThrustersShutdown);
+            MissionEventManager.SendEvent(MissionEvent.LightsOut);
         }
         
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            MissionEventManager.SendEvent(MissionEvent.ThrustersStart);
+            MissionEventManager.SendEvent(MissionEvent.LightsOn);
         }
     }
 

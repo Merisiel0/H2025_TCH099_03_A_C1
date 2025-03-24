@@ -8,6 +8,7 @@ public class ModuleUI : MonoBehaviour
     // Position pour l'ouverture et la fermeture de l'�cran du module
     private static float openedPosition = 0.0f;
     private float closedPosition;
+    protected bool UIEnabled = false;
 
     [SerializeField] private float animationDuration = 0.15f;
 
@@ -20,6 +21,7 @@ public class ModuleUI : MonoBehaviour
     {
         LeanTween.cancel(gameObject);
         LeanTween.moveLocalY(gameObject, openedPosition, animationDuration).setEase(LeanTweenType.easeOutCubic);
+        UIEnabled = true;
     }
 
     public void DisableUI()
@@ -28,5 +30,6 @@ public class ModuleUI : MonoBehaviour
         LeanTween.moveLocalY(gameObject, closedPosition, animationDuration)
                     .setEase(LeanTweenType.easeInCubic)
                     .setOnComplete(() => gameObject.SetActive(false));
+        UIEnabled = false;
     }
 }

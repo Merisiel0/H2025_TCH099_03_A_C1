@@ -84,6 +84,7 @@ public class PlayerInteract : MonoBehaviour
         {
             CloseCurrentModule();
         }
+        
     }
 
     private void CloseCurrentModule()
