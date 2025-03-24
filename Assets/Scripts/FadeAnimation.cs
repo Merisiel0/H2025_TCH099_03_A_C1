@@ -8,6 +8,7 @@ public class FadeAnimation : MonoBehaviour
     public bool fadeOnStart = false;
     public bool fadeIn = true;
     public float fadeDuration = 0.1f;
+    public float maxAlpha = 1.0f;
 
     private CanvasGroup canvasGroup;
 
@@ -25,9 +26,9 @@ public class FadeAnimation : MonoBehaviour
 
     public void Fade(System.Action callback)
     {
-        canvasGroup.alpha = fadeIn ? 0.0f : 1.0f;
+        canvasGroup.alpha = fadeIn ? 0.0f : maxAlpha;
 
-        LTDescr lt = LeanTween.alphaCanvas(canvasGroup, fadeIn ? 1.0f : 0.0f, fadeDuration);
+        LTDescr lt = LeanTween.alphaCanvas(canvasGroup, fadeIn ? maxAlpha : 0.0f, fadeDuration);
         if(callback != null) lt.setOnComplete(callback);
     }
 }
