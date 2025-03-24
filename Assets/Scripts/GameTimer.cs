@@ -9,7 +9,7 @@ using UnityEngine.UIElements;
 /// </summary>
 public class GameTimer : MonoBehaviour
 {
-    private static GameTimer instance;
+    public static GameTimer instance { get; private set; }
 
     public int totalTime = 360;
     public int remainingTime { get; private set; }
