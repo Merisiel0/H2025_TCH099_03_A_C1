@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -8,9 +9,15 @@ public class PauseMenu : MonoBehaviour
     private KeyCode key = KeyCode.Escape;
     private FadeAnimation fade;
 
+    [SerializeField] private UnityEvent backToMenuEvent;
+    [SerializeField] private CanvasGroup button;
+
     private void Start()
     {
         fade = GetComponent<FadeAnimation>();
+
+        button.interactable = false;
+        button.blocksRaycasts = false;
     }
 
     private void Update()
@@ -19,6 +26,10 @@ public class PauseMenu : MonoBehaviour
         {
             opended = !opended;
             fade.fadeIn = opended;
+
+            button.interactable = opended;
+            button.blocksRaycasts = opended;
+
             fade.Fade();
         }
     }
