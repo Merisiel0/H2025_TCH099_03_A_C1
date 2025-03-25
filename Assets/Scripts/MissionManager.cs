@@ -17,6 +17,7 @@ public class MissionManager : MonoBehaviour, MissionEventListener
     [SerializeField] private string failText = "Échec de la mission";
     [SerializeField] private Color failColor = Color.red;
 
+    [SerializeField] private CanvasGroup menuButton;
     [SerializeField] private TextMeshProUGUI missionStatusText;
     [SerializeField] private TextMeshProUGUI survivedTimeText;
 
@@ -39,6 +40,9 @@ public class MissionManager : MonoBehaviour, MissionEventListener
     {
         missionStatusText.text = success ? successText : failText;
         missionStatusText.color = success ? successColor : failColor;
+
+        menuButton.interactable = true;
+        menuButton.blocksRaycasts = true;
 
         int survivedTime = GameTimer.instance.totalTime - GameTimer.instance.remainingTime;
         string minutes = (survivedTime / 60).ToString();
