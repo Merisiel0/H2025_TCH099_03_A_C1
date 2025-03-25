@@ -48,6 +48,8 @@ public class LevelData
     public string difficulty = "Difficulty";
     public int duration = 9999; // temps en seconde (durée du niveau aprox)
     public string color = "FF00FF";
+    public int minTemps = 0;
+    public int maxTemps = 0;
 }
 
 /// <summary>

@@ -9,14 +9,23 @@ using System.ComponentModel;
 /// </summary>
 public enum MissionEvent
 {
+    [Description("Le module a été endommagé")]
+    PlayerEventFailed,
+
     [Description("Panne des générateurs")]
     LightsOut,
     [Description("Redémarrage des générateurs")]
     LightsOn,
+
     [Description("Panne des propulseurs")]
     ThrustersShutdown,
     [Description("Redémarrage des propulseurs")]
     ThrustersStart,
+
+    [Description("Un fusible vient de lâcher !")]
+    ElectricFailure,
+    [Description("Le système électrique est redémarré.")]
+    ElectricRestart
 }
 
 /// <summary>

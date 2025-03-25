@@ -81,7 +81,7 @@ public class SpaceshipThrusters : MonoBehaviour, MissionEventListener
         ParticleSystem[] ps = container.GetComponentsInChildren<ParticleSystem>();
         foreach(ParticleSystem system in ps)
         {
-            if (status) system.Stop();
+            if (!status) system.Stop();
             else system.Play();
         }
     }

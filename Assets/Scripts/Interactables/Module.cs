@@ -4,53 +4,54 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
-public class Module : Interactable
+public class Module : Interactable, MissionEventListener
 {
-    // Position pour l'ouverture et la fermeture de l'�cran du module
-    private static float openedPosition = 0.0f;
-    private float closedPosition;
-    private bool opened = false;
+    [SerializeField] private ModuleUI moduleUI;
+    [SerializeField] private GameObject alarmIndicator;
+    [SerializeField] private MissionEvent startEvent;
+    [SerializeField] private MissionEvent endEvent;
 
-    [SerializeField] private float animationDuration = 0.15f;
-    [SerializeField] private GameObject moduleUI;
+    private bool opened = false;
 
     protected override void Start()
     {
         base.Start();
 
-        if(moduleUI)
-        {
-            closedPosition = moduleUI.transform.localPosition.y;
-            moduleUI.SetActive(false);
-        }
+        MissionEventManager.AddEventListener(this);
+
+        if (alarmIndicator)
+            ShowIndicator(false);
     }
 
-    private void EnableUI()
+    private void ShowIndicator(bool show)
     {
-        LeanTween.cancel(moduleUI);
-        moduleUI.gameObject.SetActive(true);
-        LeanTween.moveLocalY(moduleUI, openedPosition, animationDuration).setEase(LeanTweenType.easeOutCubic);
-    }
-
-    private void DisableUI()
-    {
-        LeanTween.cancel(moduleUI);
-        LeanTween.moveLocalY(moduleUI, closedPosition, animationDuration)
-                    .setEase(LeanTweenType.easeInCubic)
-                    .setOnComplete(() => moduleUI.gameObject.SetActive(false));
+        alarmIndicator.SetActive(show);
     }
 
     public override void Interact()
     {
         if (opened)
         {
-            DisableUI();
+            moduleUI.DisableUI();
             opened = false;
         }
         else
         {
-            EnableUI();
+            moduleUI.gameObject.SetActive(true); // Protection en cas de problème
+            moduleUI.EnableUI();
             opened = true;
+        }
+    }
+
+    public void OnNotify(MissionEvent e)
+    {
+        if(e == startEvent)
+        {
+            ShowIndicator(true);
+        } 
+        else if(e == endEvent)
+        {
+            ShowIndicator(false);
         }
     }
 }

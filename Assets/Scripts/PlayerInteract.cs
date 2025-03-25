@@ -1,15 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerController))]
 public class PlayerInteract : MonoBehaviour
 {
+    private static PlayerInteract instance;
+
     private PlayerController m_controller;
     private Module m_currentlyOpenedModule = null;
 
     [Header("Interactions")]
     [SerializeField] private float m_interactableDetectionRange = 0.5f;
+
+    public static void StopInteractions()
+    {
+        instance.CloseCurrentModule();
+    }
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else Destroy(this);
+    }
 
     private void Start()
     {
@@ -67,6 +84,7 @@ public class PlayerInteract : MonoBehaviour
         {
             CloseCurrentModule();
         }
+        
     }
 
     private void CloseCurrentModule()
