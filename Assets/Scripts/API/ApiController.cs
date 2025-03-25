@@ -31,7 +31,7 @@ public class ApiController : MonoBehaviour
     /// <summary>
     /// L'url de base auquel on ajoutera les routes spécifié pour l'api
     /// </summary>
-    public static string baseUrl = "http://127.0.0.1:5000/";
+    public static string baseUrl = "http://localhost:3000/";
                                      
     private static ApiController instance; // L'instance statique de notre singleton
 
@@ -82,6 +82,7 @@ public class ApiController : MonoBehaviour
     /// <returns></returns>
     private static IEnumerator AsyncFetchDataFromAPI(string url, Action<string> callback)
     {
+        Debug.Log("Full request : " + baseUrl + url);
         UnityWebRequest request = UnityWebRequest.Get(baseUrl + url);
         yield return request.SendWebRequest();
 

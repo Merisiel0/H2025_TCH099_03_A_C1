@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class ElectricPanelModule : ModuleUI, MissionEventListener
 {
+    private static string apiUrl = "fils";
+
     private WireModuleData data;
 
     [SerializeField] private GameObject wirePrefab;
@@ -57,7 +59,7 @@ public class ElectricPanelModule : ModuleUI, MissionEventListener
         {
             MissionEventManager.SendEvent(MissionEvent.PlayerEventFailed);
             PlayerInteract.StopInteractions();
-        } 
+        }
         else
         {
             MissionEventManager.SendEvent(MissionEvent.ElectricRestart);
@@ -70,16 +72,23 @@ public class ElectricPanelModule : ModuleUI, MissionEventListener
         if(e == MissionEvent.ElectricFailure)
         {
             // TODO MODIFIER POUR ACCEPTERS LES VRAI EVENTS
-            WireModuleData myData = new WireModuleData();
-            myData.nbFils = 6;
-            myData.couleurFil1 = "FF0000";
-            myData.couleurFil2 = "FF0000";
-            myData.couleurFil3 = "FF0000";
-            myData.couleurFil4 = "FF0000";
-            myData.couleurFil5 = "FF0000";
-            myData.couleurFil6 = "FF0000";
-            myData.solution = 1;
-            InitModule(myData);
+            ApiController.FetchDataFromAPI<WireModuleData>(apiUrl, 
+                (data) => {
+                    InitModule(data);
+            });
+
+
+            // UNCOMMENT THIS PART FOR MANUAL MODULE DATA CREATIONS
+            //WireModuleData myData = new WireModuleData();
+            //myData.nbFils = 6;
+            //myData.couleurFil1 = "FF0000";
+            //myData.couleurFil2 = "FF0000";
+            //myData.couleurFil3 = "FF0000";
+            //myData.couleurFil4 = "FF0000";
+            //myData.couleurFil5 = "FF0000";
+            //myData.couleurFil6 = "FF0000";
+            //myData.solution = 1;
+            //InitModule(myData);
         }
     }
 }

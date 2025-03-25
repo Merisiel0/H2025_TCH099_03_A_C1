@@ -37,7 +37,20 @@ public class MissionEventManager : MonoBehaviour
     /// Liste qui contient tous les events principaux, notament les déclencheurs et non les évents interne
     /// </summary>
     private static MissionEvent[] importantEvents = {
-        MissionEvent.LightsOn,
+        MissionEvent.LightsOut,
+        MissionEvent.ThrustersShutdown,
+        MissionEvent.ElectricFailure
+    };
+
+    /// <summary>
+    /// Liste des événements qui peuvent être lancés aléatoirement par le jeu au fils d'une partie
+    /// On lance un de ces événements préiodiquement pour "briser" les modules
+    /// </summary>
+    private static MissionEvent[] launchableEvents =
+    {
+        MissionEvent.LightsOut,
+        MissionEvent.ThrustersShutdown,
+        MissionEvent.ElectricFailure
     };
 
     private static MissionEventManager instance; // Instance du singleton statique
@@ -61,6 +74,28 @@ public class MissionEventManager : MonoBehaviour
 
         // Crï¿½ation de la liste d'observeurs
         listeners = new List<MissionEventListener>();
+    }
+
+    private void Start()
+    {
+        // On laisse 5 secondes de pause au joueur au démarrage de la partie avant de lancer un event
+        // Permet d'éviter de pénaliser en cas de problème de chargement ou de prob. technique du coté user.
+        StartCoroutine(StartEventAfterTimeout(5));
+    }
+
+    private IEnumerator StartEventAfterTimeout(int timeout)
+    {
+        Debug.Log("Timeout : " + timeout);
+        yield return new WaitForSeconds(timeout);
+
+        // Lancement d'un évent random
+        // TODO VÉRIFICATION QU'ON NE LANCE PAS UN ÉVÉNEMENTS QUI EST DÉJA EN COURS!!!!
+        int randIndex = Random.Range(0, launchableEvents.Length - 1);
+        SendEvent(launchableEvents[randIndex]);
+
+        // Relancement du timer avant le prochain event en fonction du niveau en cours
+        int nextTimeout = Random.Range(LevelDataObject.Get().minTemps, LevelDataObject.Get().maxTemps);
+        StartCoroutine(StartEventAfterTimeout(nextTimeout));
     }
 
     /// <summary>

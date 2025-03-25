@@ -32,7 +32,14 @@ public class LevelDataObject : MonoBehaviour
         return this;
     }
 
-    public static LevelData Get() { return instance.data; }
+    public static LevelData Get() { 
+        if(Exists())
+        {
+            return instance.data;
+        } 
+        else return new LevelData();
+    }
+
     public static bool Exists() { return instance != null; }
 }
 
@@ -48,8 +55,8 @@ public class LevelData
     public string difficulty = "Difficulty";
     public int duration = 9999; // temps en seconde (durée du niveau aprox)
     public string color = "FF00FF";
-    public int minTemps = 0;
-    public int maxTemps = 0;
+    public int minTemps = 15;
+    public int maxTemps = 20;
 }
 
 /// <summary>
