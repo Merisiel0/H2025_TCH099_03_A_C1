@@ -996,6 +996,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4b7003fda76c344a943a1f4443c45aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  launchableEvents:
+  - trigger: 3
+    solver: 4
+    isActive: 0
+  - trigger: 5
+    solver: 6
+    isActive: 0
 --- !u!114 &157691661
 MonoBehaviour:
   m_ObjectHideFlags: 0
