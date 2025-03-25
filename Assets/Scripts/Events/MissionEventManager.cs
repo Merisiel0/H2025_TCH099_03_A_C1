@@ -28,17 +28,35 @@ public enum MissionEvent
     ElectricRestart
 }
 
+[System.Serializable]
+public class MissionEventStatus
+{
+    public MissionEvent trigger;
+    public MissionEvent solver;
+    public bool isActive;
+}
+
 /// <summary>
 /// Classe de style sujet observï¿½ qui permet d'envoyer les objets ï¿½ ses abonnï¿½es (des observateurs) lorsqu'un ï¿½vï¿½nement est lancï¿½.
 /// </summary>
-public class MissionEventManager : MonoBehaviour
+public class MissionEventManager : MonoBehaviour, MissionEventListener
 {
     /// <summary>
     /// Liste qui contient tous les events principaux, notament les déclencheurs et non les évents interne
     /// </summary>
     private static MissionEvent[] importantEvents = {
-        MissionEvent.LightsOn,
+        MissionEvent.LightsOut,
+        MissionEvent.ThrustersShutdown,
+        MissionEvent.ElectricFailure
     };
+
+    /// <summary>
+    /// Liste des événements qui peuvent être lancés aléatoirement par le jeu au fils d'une partie
+    /// On lance un de ces événements préiodiquement pour "briser" les modules
+    /// On garde en mémoire les "solver" soit les événements qui résoudent les problème pour éviter que l'on lance
+    /// plusieurs fois le même type d'événement venant override celui en cours.
+    /// </summary>
+    [SerializeField] private MissionEventStatus[] launchableEvents;
 
     private static MissionEventManager instance; // Instance du singleton statique
 
@@ -63,6 +81,41 @@ public class MissionEventManager : MonoBehaviour
         listeners = new List<MissionEventListener>();
     }
 
+    private void Start()
+    {
+        // On laisse quelques secondes de pause au joueur au démarrage de la partie avant de lancer un event
+        // Permet d'éviter de pénaliser en cas de problème de chargement ou de prob. technique du coté user.
+        StartCoroutine(StartEventAfterTimeout(10));
+
+        AddEventListener(this); // Écoute lui même les événements
+    }
+
+    private IEnumerator StartEventAfterTimeout(int timeout)
+    {
+        yield return new WaitForSeconds(timeout);
+
+        // Lancement d'un évent random qui n'est pas déjà déclenché
+        List<int> inactiveEvents = new List<int>();
+        for(int i = 0; i < launchableEvents.Length; i++)
+        {
+            if(!launchableEvents[i].isActive)
+            {
+                inactiveEvents.Add(i);
+            }
+        }
+
+        if(inactiveEvents.Count > 0)
+        {
+            int eventIndex = inactiveEvents[Random.Range(0, inactiveEvents.Count)];
+            SendEvent(launchableEvents[eventIndex].trigger);
+            launchableEvents[eventIndex].isActive = true;
+        }
+
+        // Relancement du timer avant le prochain event en fonction du niveau en cours
+        int nextTimeout = Random.Range(LevelDataObject.Get().minTemps, LevelDataObject.Get().maxTemps);
+        StartCoroutine(StartEventAfterTimeout(nextTimeout));
+    }
+
     /// <summary>
     /// Fonction qui permet de lancer et de distribuer un ï¿½vï¿½nement ï¿½ tous les observateurs.
     /// </summary>
@@ -83,6 +136,17 @@ public class MissionEventManager : MonoBehaviour
     public static void AddEventListener(MissionEventListener listener)
     {
         instance.listeners.Add(listener);
+    }
+
+    public void OnNotify(MissionEvent e)
+    {
+        // Mise à jour de l'état actuel des modules lors d'un événement
+        foreach (MissionEventStatus status in launchableEvents) {
+            if(e == status.solver)
+            {
+                status.isActive = false;
+            }
+        }
     }
 }
 

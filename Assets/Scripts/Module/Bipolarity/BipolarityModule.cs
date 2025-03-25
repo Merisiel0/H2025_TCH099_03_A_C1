@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class BipolarityModule : ModuleUI, MissionEventListener
 {
+    private static string apiUrl = "bipolarite";
+
     BipolarityModuleData data;
 
     private Color regularTextColor;
@@ -77,17 +79,23 @@ public class BipolarityModule : ModuleUI, MissionEventListener
     {
         if(e == MissionEvent.ThrustersShutdown)
         {
-            BipolarityModuleData data = new BipolarityModuleData();
-            data.id_ = 1;
-            data.lettre1 = "X";
-            data.lettre2 = "J";
-            data.lettre3 = "R";
-            data.lettre4 = "T";
-            data.caseChoisie = 2;
-            data.solution = "01101010";
-            data.couleur = "0000FF";
+            ApiController.FetchDataFromAPI<BipolarityModuleData>(apiUrl,
+                (data) => {
+                    InitModule(data);
+            });
 
-            InitModule(data);
+            // UNCOMMENT TO CREATE MODULE DATA MANUALLY
+            //BipolarityModuleData data = new BipolarityModuleData();
+            //data.id_ = 1;
+            //data.lettre1 = "X";
+            //data.lettre2 = "J";
+            //data.lettre3 = "R";
+            //data.lettre4 = "T";
+            //data.caseChoisie = 2;
+            //data.solution = "01101010";
+            //data.couleur = "0000FF";
+
+            //InitModule(data);
         }
     }
 
