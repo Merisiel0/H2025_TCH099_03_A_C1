@@ -191,6 +191,7 @@ public class PatPlayModule : ModuleUI, MissionEventListener
         {
             btn.onClick.RemoveAllListeners();
         }
+        PlayerInteract.StopInteractions();
         Debug.Log("YOU WIN");
     }
 
