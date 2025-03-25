@@ -85,7 +85,6 @@ public class MissionEventManager : MonoBehaviour
 
     private IEnumerator StartEventAfterTimeout(int timeout)
     {
-        Debug.Log("Timeout : " + timeout);
         yield return new WaitForSeconds(timeout);
 
         // Lancement d'un évent random
@@ -95,7 +94,7 @@ public class MissionEventManager : MonoBehaviour
 
         // Relancement du timer avant le prochain event en fonction du niveau en cours
         int nextTimeout = Random.Range(LevelDataObject.Get().minTemps, LevelDataObject.Get().maxTemps);
-        StartCoroutine(StartEventAfterTimeout(nextTimeout));
+        //StartCoroutine(StartEventAfterTimeout(nextTimeout)); // TODO: UNCOMMENT TO HAVE PERPETUAL EVENT CALLING
     }
 
     /// <summary>

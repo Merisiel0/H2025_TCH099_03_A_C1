@@ -71,12 +71,10 @@ public class ElectricPanelModule : ModuleUI, MissionEventListener
     {
         if(e == MissionEvent.ElectricFailure)
         {
-            // TODO MODIFIER POUR ACCEPTERS LES VRAI EVENTS
             ApiController.FetchDataFromAPI<WireModuleData>(apiUrl, 
                 (data) => {
                     InitModule(data);
             });
-
 
             // UNCOMMENT THIS PART FOR MANUAL MODULE DATA CREATIONS
             //WireModuleData myData = new WireModuleData();
