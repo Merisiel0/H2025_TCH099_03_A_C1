@@ -25,7 +25,8 @@ public enum MissionEvent
     [Description("Un fusible vient de lâcher !")]
     ElectricFailure,
     [Description("Le système électrique est redémarré.")]
-    ElectricRestart
+    ElectricRestart,
+    EmptyEventPlaceholder
 }
 
 [System.Serializable]

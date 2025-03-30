@@ -28,8 +28,7 @@ public class ModuleUI : MonoBehaviour
     {
         LeanTween.cancel(gameObject);
         LeanTween.moveLocalY(gameObject, closedPosition, animationDuration)
-                    .setEase(LeanTweenType.easeInCubic)
-                    .setOnComplete(() => gameObject.SetActive(false));
+                    .setEase(LeanTweenType.easeInCubic);
         UIEnabled = false;
     }
 }
