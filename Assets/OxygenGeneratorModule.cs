@@ -7,12 +7,17 @@ public class OxygenGeneratorModule : ModuleUI
 {
     [SerializeField] private float timerLength = 30f;
     [SerializeField] private Image progressBar;
+
+    private float oldValue = 0f;
     private float value = 1f;
+    private float criticalValue;
+
     private bool buttonPressed = false;
 
     void Start()
     {
         base.Start();
+        criticalValue = value * 0.25f; // 1/4 de la valeur
     }
 
     public void OnButtonPress()
@@ -31,7 +36,17 @@ public class OxygenGeneratorModule : ModuleUI
         if(!buttonPressed) modifier = -Time.deltaTime / timerLength;
         else modifier = Time.deltaTime / timerLength * 15;
 
+        oldValue = value;
         value += modifier;
+
+        if(value < criticalValue && oldValue >= criticalValue)
+        {
+            MissionEventManager.SendEvent(MissionEvent.CriticalOxygenQuantity);
+        } 
+        else if(value >= criticalValue && oldValue < criticalValue)
+        {
+            MissionEventManager.SendEvent(MissionEvent.OxygenQuantityRestored);
+        }
 
         if(value <= 0)
         {

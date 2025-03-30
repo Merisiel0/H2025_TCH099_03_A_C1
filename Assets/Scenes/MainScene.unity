@@ -1732,8 +1732,8 @@ MonoBehaviour:
   outline: {fileID: 422320793}
   moduleUI: {fileID: 552059092}
   alarmIndicator: {fileID: 369824201}
-  startEvent: 7
-  endEvent: 7
+  startEvent: 8
+  endEvent: 9
 --- !u!4 &321737547 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4141794887681035707, guid: 7dc8f678511ed8f4c91d0abe88d140de, type: 3}

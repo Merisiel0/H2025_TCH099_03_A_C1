@@ -26,7 +26,11 @@ public enum MissionEvent
     ElectricFailure,
     [Description("Le système électrique est redémarré.")]
     ElectricRestart,
-    EmptyEventPlaceholder
+
+    EmptyEventPlaceholder,
+
+    CriticalOxygenQuantity,
+    OxygenQuantityRestored
 }
 
 [System.Serializable]
