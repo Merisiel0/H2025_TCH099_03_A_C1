@@ -11,6 +11,8 @@ public class GameTimer : MonoBehaviour
 {
     public static GameTimer instance { get; private set; }
 
+    public float startTime { get; private set; }
+
     public int totalTime = 360;
     public int remainingTime { get; private set; }
     public bool isPaused { get; private set; }
@@ -45,6 +47,7 @@ public class GameTimer : MonoBehaviour
         UpdateTimerText();
 
         // On commence le décompte
+        startTime = Time.time;
         StartCoroutine(ExecuteTimer());
     }
 

@@ -44,7 +44,7 @@ public class MissionManager : MonoBehaviour, MissionEventListener
         menuButton.interactable = true;
         menuButton.blocksRaycasts = true;
 
-        int survivedTime = GameTimer.instance.totalTime - GameTimer.instance.remainingTime;
+        int survivedTime = (int) (Time.time - GameTimer.instance.startTime);
         string minutes = (survivedTime / 60).ToString();
         minutes = minutes.PadLeft(2, '0');
         string seconds = (survivedTime % 60).ToString();
