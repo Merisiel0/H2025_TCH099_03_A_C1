@@ -162,28 +162,51 @@ public class PatPlayModule : ModuleUI, MissionEventListener
 
         BoolRef[] buttons = new BoolRef[] { trianglePressed, circlePressed, squarePressed, xPressed };
 
-        // play the game
+        // --- Actual Simon Game logic ---
+
+        // // play the game
+        // for (int solutionProgress = 0; solutionProgress < solution.Length; solutionProgress++)
+        // {
+        //     // wait a bit
+        //     yield return new WaitForSeconds(startTimout);
+
+        //     // flash the solution
+        //     for (int i = 0; i <= solutionProgress; i++)
+        //     {
+        //         yield return Flash(_spriteBackgrounds[solution[i]], flashColor, flashDuration);
+        //     }
+
+        //     // one round = pressing all the right buttons
+        //     for (int roundProgress = 0; roundProgress <= solutionProgress; roundProgress++)
+        //     {
+        //         // wait for all buttons to be pressed in right order
+        //         while (!buttons[solution[roundProgress]].value)
+        //         {
+        //             yield return null;
+        //         }
+        //         buttons[solution[roundProgress]].value = false;
+        //     }
+        // }
+
         for (int solutionProgress = 0; solutionProgress < solution.Length; solutionProgress++)
         {
-            // wait a bit
-            yield return new WaitForSeconds(startTimout);
-
-            // flash the solution
-            for (int i = 0; i <= solutionProgress; i++)
+            // wait for all buttons to be pressed in right order
+            int btnIndex = solution[solutionProgress];
+            while (!buttons[btnIndex].value)
             {
-                yield return Flash(_spriteBackgrounds[solution[i]], flashColor, flashDuration);
-            }
-
-            // one round = pressing all the right buttons
-            for (int roundProgress = 0; roundProgress <= solutionProgress; roundProgress++)
-            {
-                // wait for all buttons to be pressed in right order
-                while (!buttons[solution[roundProgress]].value)
+                for (int i = 0; i < buttons.Length; i++)
                 {
-                    yield return null;
+                    if (i != btnIndex && buttons[i].value)
+                    {
+                        PlayerInteract.StopInteractions();
+                        Debug.Log("YOU LOOSE");
+                        yield break;
+                    }
                 }
-                buttons[solution[roundProgress]].value = false;
+
+                yield return null;
             }
+            buttons[solution[solutionProgress]].value = false;
         }
 
         // cleanup listeners
@@ -191,6 +214,7 @@ public class PatPlayModule : ModuleUI, MissionEventListener
         {
             btn.onClick.RemoveAllListeners();
         }
+
         PlayerInteract.StopInteractions();
         Debug.Log("YOU WIN");
     }
