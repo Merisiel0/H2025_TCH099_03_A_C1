@@ -1135,6 +1135,9 @@ MonoBehaviour:
   - trigger: 5
     solver: 6
     isActive: 0
+  - trigger: 1
+    solver: 2
+    isActive: 0
 --- !u!114 &157691661
 MonoBehaviour:
   m_ObjectHideFlags: 0
