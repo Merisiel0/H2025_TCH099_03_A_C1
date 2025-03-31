@@ -44,7 +44,7 @@ public class PatPlayModule : ModuleUI, MissionEventListener
 
     public void OnNotify(MissionEvent e)
     {
-        if (e == MissionEvent.LightsOut)
+        if (e == MissionEvent.PatPlayTrigger)
         {
             PatPlayModuleData data = new PatPlayModuleData();
             data.couleurTriangle = "0000ff";
@@ -199,7 +199,7 @@ public class PatPlayModule : ModuleUI, MissionEventListener
                     if (i != btnIndex && buttons[i].value)
                     {
                         PlayerInteract.StopInteractions();
-                        Debug.Log("YOU LOOSE");
+                        MissionEventManager.SendEvent(MissionEvent.PlayerEventFailed);
                         yield break;
                     }
                 }
@@ -216,7 +216,7 @@ public class PatPlayModule : ModuleUI, MissionEventListener
         }
 
         PlayerInteract.StopInteractions();
-        Debug.Log("YOU WIN");
+            MissionEventManager.SendEvent(MissionEvent.PatPlaySolver);
     }
 
     private IEnumerator Flash(Image image, Color flashColor, float duration)

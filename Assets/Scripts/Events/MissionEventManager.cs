@@ -27,6 +27,11 @@ public enum MissionEvent
     [Description("Le système électrique est redémarré.")]
     ElectricRestart,
 
+    [Description("Patplay trigger dummy")]
+    PatPlayTrigger,
+    [Description("Patplay solver dummy")]
+    PatPlaySolver,
+
     EmptyEventPlaceholder,
 
     CriticalOxygenQuantity,

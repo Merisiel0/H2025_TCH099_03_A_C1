@@ -95,6 +95,7 @@ public class LevitatingLightsModule : ModuleUI, MissionEventListener
             // if all levers are good, quit module
             PlayerInteract.StopInteractions();
             activated = false;
+            MissionEventManager.SendEvent(MissionEvent.LightsOn);
         }
     }
 
