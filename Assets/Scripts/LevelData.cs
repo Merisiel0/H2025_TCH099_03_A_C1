@@ -25,9 +25,9 @@ public class LevelDataObject : MonoBehaviour
         this.data.id = data.id;
         this.data.nom = data.nom;
         this.data.description = data.description;
-        this.data.difficulty = data.difficulty;
-        this.data.duration = data.duration;
-        this.data.color = data.color;
+        this.data.difficulte = data.difficulte;
+        this.data.duree = data.duree;
+        this.data.couleur = data.couleur;
 
         return this;
     }
@@ -52,9 +52,9 @@ public class LevelData
     public int id = 0;
     public string nom = "Nom";
     public string description = "Description";
-    public string difficulty = "Difficulty";
-    public int duration = 9999; // temps en seconde (durée du niveau aprox)
-    public string color = "FF00FF";
+    public string difficulte = "Difficulty";
+    public int duree = 9999; // temps en seconde (durée du niveau aprox)
+    public string couleur = "FF00FF";
     public int minTemps = 15;
     public int maxTemps = 20;
 }

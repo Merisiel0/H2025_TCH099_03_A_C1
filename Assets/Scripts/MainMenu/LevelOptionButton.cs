@@ -41,17 +41,17 @@ public class LevelOptionButton : MonoBehaviour, IPointerClickHandler
         this.mainMenu = mainMenu;
         this.levelData = data;
 
-        headerText.SetText(data.nom + " - " + data.difficulty);
+        headerText.SetText(data.nom + " - " + data.duree);
         descriptionText.SetText(data.description);
 
-        string minutes = (data.duration / 60).ToString();
+        string minutes = (data.duree / 60).ToString();
         minutes = minutes.PadLeft(1, '0');
-        string seconds = (data.duration % 60).ToString();
+        string seconds = (data.duree % 60).ToString();
         seconds = seconds.PadLeft(2, '0');
         durationText.SetText(minutes + ":" + seconds);
 
         // On set la couleurs
-        Color color = HexToColor.FromHex(data.color);
+        Color color = HexToColor.FromHex(data.couleur);
         headerText.color = color;
         descriptionText.color = color;
         durationText.color = color;

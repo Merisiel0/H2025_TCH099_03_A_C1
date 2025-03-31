@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEditor;
+using System.Text;
 
 /// <summary>
 /// Une classe qui permet de modifier les valeurs statiques (et donc communes) entre les instances de ApiController, 
@@ -31,7 +32,7 @@ public class ApiController : MonoBehaviour
     /// <summary>
     /// L'url de base auquel on ajoutera les routes spécifié pour l'api
     /// </summary>
-    public static string baseUrl = "http://localhost:3000/";
+    public static string baseUrl = "http://localhost:5000/";
                                      
     private static ApiController instance; // L'instance statique de notre singleton
 
@@ -82,7 +83,7 @@ public class ApiController : MonoBehaviour
     /// <returns></returns>
     private static IEnumerator AsyncFetchDataFromAPI(string url, Action<string> callback)
     {
-        Debug.Log("Full request : " + baseUrl + url);
+        //Debug.Log("Full request : " + baseUrl + url);
         UnityWebRequest request = UnityWebRequest.Get(baseUrl + url);
         yield return request.SendWebRequest();
 
@@ -96,5 +97,25 @@ public class ApiController : MonoBehaviour
             string json = request.downloadHandler.text;
             callback.Invoke(json);
         }
+    }
+
+    public static void PostJsonToAPI(string url, string body, Action<string> callback)
+    {
+        instance.StartCoroutine(AsyncPostDataToAPI(url, body, callback));
+    }
+
+    private static IEnumerator AsyncPostDataToAPI(string url, string body, Action<string> callback)
+    {
+        UnityWebRequest request = new UnityWebRequest(baseUrl + url, "POST");
+
+        byte[] jsonToSend = Encoding.UTF8.GetBytes(body);
+        request.uploadHandler = new UploadHandlerRaw(jsonToSend);
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+
+        yield return request.SendWebRequest();
+
+        string json = request.downloadHandler.text;
+        callback.Invoke(json);
     }
 }

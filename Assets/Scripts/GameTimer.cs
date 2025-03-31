@@ -38,7 +38,7 @@ public class GameTimer : MonoBehaviour
     {
         if (LevelDataObject.Exists())
         {
-            totalTime = LevelDataObject.Get().duration;
+            totalTime = LevelDataObject.Get().duree;
         }
 
         // Initialisation du minuteur
