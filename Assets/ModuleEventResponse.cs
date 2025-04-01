@@ -22,30 +22,8 @@ public class EventResponse
 
 // API Responses templates for each modules
 [System.Serializable]
-public class WiresEventResponse
+public class ModuleEventRespone<T>
 {
     public T module;
     public EventResponse eventData;
 }
-
-[System.Serializable]
-public class BipolarityEventResponse
-{
-    public BipolarityModuleData module;
-    public EventResponse eventData;
-}
-
-[System.Serializable]
-public class LightsEventResponse
-{
-    public LevitatingLightsModuleData module;
-    public EventResponse eventData;
-}
-
-[System.Serializable]
-public class PatPlayEventResponse
-{
-    public PatPlayModuleData module;
-    public EventResponse eventData;
-}
-

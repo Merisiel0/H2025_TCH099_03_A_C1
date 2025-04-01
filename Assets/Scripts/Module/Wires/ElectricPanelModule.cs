@@ -71,7 +71,7 @@ public class ElectricPanelModule : ModuleUI, MissionEventListener
     {
         if(e == MissionEvent.ElectricFailure)
         {
-            ApiController.FetchDataFromAPI<WiresEventResponse>(apiUrl, (data) => {
+            ApiController.FetchDataFromAPI<ModuleEventRespone<WireModuleData>>(apiUrl, (data) => {
                 data.eventData.Init(this);
                 InitModule(data.module);
             });
