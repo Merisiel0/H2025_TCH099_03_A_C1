@@ -22,7 +22,7 @@ public class EventResponse
 
 // API Responses templates for each modules
 [System.Serializable]
-public class WiresEventResponse<T>
+public class WiresEventResponse
 {
     public T module;
     public EventResponse eventData;
