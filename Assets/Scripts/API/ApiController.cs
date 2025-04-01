@@ -7,24 +7,6 @@ using UnityEditor;
 using System.Text;
 
 /// <summary>
-/// Une classe qui permet de modifier les valeurs statiques (et donc communes) entre les instances de ApiController, 
-/// Cela permet d'avoir un seul host pour notre API et de ne pas avoir d'oublie si des modification ont lieu.
-/// </summary>
-[CustomEditor(typeof(ApiController))]
-public class ApiControllerEditor : Editor
-{
-    /// <summary>
-    // Affichage d'un champ de texte dans l'éditeur pour modifier l'url de base (ex: 'http://127.0.0.1:5000')
-    /// </summary>
-    public override void OnInspectorGUI()
-    {
-        GUILayout.Label("Api configuration: ");
-        ApiController.baseUrl = EditorGUILayout.TextField("Base Url (ex: http://localhost:8080)", ApiController.baseUrl);
-        DrawDefaultInspector();
-    }
-}
-
-/// <summary>
 /// Une classe qui encapsule les requêtes à l'api et permet de récuperer un résultat sous forme de JSON ou d'objet C# (à l'aide de la sérializaiton)
 /// </summary>
 public class ApiController : MonoBehaviour
