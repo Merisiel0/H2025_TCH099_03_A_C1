@@ -10,6 +10,8 @@ using Unity.Mathematics;
 
 public class LevitatingLightsModule : ModuleUI, MissionEventListener
 {
+    private static string apiUrl = "/api/v1/module?module=lights";
+
     public Color lightOn;
     public Color lightOff;
     public Color leverColor;
@@ -25,11 +27,15 @@ public class LevitatingLightsModule : ModuleUI, MissionEventListener
     {
         if (e == MissionEvent.LightsOut)
         {
-            data = new LevitatingLightsModuleData();
-            data.lights = "XOOXOXOXO";
-            data.solution = "100101";
+            ApiController.FetchDataFromAPI<ModuleEventResponse<LevitatingLightsModuleData>>(apiUrl, (data) => {
+                data.Init();
+                InitModule(data.module);
+            });
+            //data = new LevitatingLightsModuleData();
+            //data.lights = "XOOXOXOXO";
+            //data.solution = "100101";
 
-            InitModule(data);
+            //InitModule(data);
         }
     }
 

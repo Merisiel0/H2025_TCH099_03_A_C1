@@ -9,6 +9,8 @@ using Unity.Collections;
 
 public class PatPlayModule : ModuleUI, MissionEventListener
 {
+    private static string apiUrl = "/api/v1/module?module=patplay";
+
     public float startTimout = 1;
     public float roundTimeout = 0.5f;
     public float flashDuration = 1;
@@ -46,18 +48,23 @@ public class PatPlayModule : ModuleUI, MissionEventListener
     {
         if (e == MissionEvent.PatPlayTrigger)
         {
-            PatPlayModuleData data = new PatPlayModuleData();
-            data.couleurTriangle = "0000ff";
-            data.couleurCercle = "ffff00";
-            data.couleurCarre = "00ff00";
-            data.couleurX = "ff0000";
-            data.formeHG = "Carre";
-            data.formeHD = "X";
-            data.formeBG = "Cercle";
-            data.formeBD = "Triangle";
-            data.solution = "32201";
+            ApiController.FetchDataFromAPI<ModuleEventResponse<PatPlayModuleData>>(apiUrl, (data) => {
+                data.Init();
+                InitModule(data.module);
+            });
 
-            InitModule(data);
+            //PatPlayModuleData data = new PatPlayModuleData();
+            //data.couleurTriangle = "0000ff";
+            //data.couleurCercle = "ffff00";
+            //data.couleurCarre = "00ff00";
+            //data.couleurX = "ff0000";
+            //data.formeHG = "Carre";
+            //data.formeHD = "X";
+            //data.formeBG = "Cercle";
+            //data.formeBD = "Triangle";
+            //data.solution = "32201";
+
+            //InitModule(data);
         }
     }
 

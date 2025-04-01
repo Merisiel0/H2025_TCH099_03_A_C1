@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BipolarityModule : ModuleUI, MissionEventListener
 {
-    private static string apiUrl = "bipolarite";
+    private static string apiUrl = "/api/v1/module?module=bipolarity";
 
     BipolarityModuleData data;
 
@@ -79,9 +79,9 @@ public class BipolarityModule : ModuleUI, MissionEventListener
     {
         if(e == MissionEvent.ThrustersShutdown)
         {
-            ApiController.FetchDataFromAPI<BipolarityModuleData>(apiUrl,
-                (data) => {
-                    InitModule(data);
+            ApiController.FetchDataFromAPI<ModuleEventResponse<BipolarityModuleData>>(apiUrl, (data) => {
+                data.Init();
+                InitModule(data.module);
             });
 
             // UNCOMMENT TO CREATE MODULE DATA MANUALLY
