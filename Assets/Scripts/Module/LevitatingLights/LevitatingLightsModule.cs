@@ -68,7 +68,7 @@ public class LevitatingLightsModule : ModuleUI, MissionEventListener
 
         for (int i = 0; i < lights.Length; i++)
         {
-            if (data.lumiere[i] == 'O')
+            if (data.lights[i] == 'O')
             {
                 lights[i].color = lightOn;
             }
