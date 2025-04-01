@@ -62,11 +62,12 @@ public class ApiController : MonoBehaviour
     {
         instance.StartCoroutine(AsyncFetchDataFromAPI(url, (json) =>
         {
+            Debug.Log(json);
             try
             {
                 T response = JsonUtility.FromJson<T>(json);
                 callback.Invoke(response);
-            } 
+            }
             catch(Exception e)
             {
                 Debug.LogWarning(e);
