@@ -5,8 +5,10 @@ using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class EventNotificationController : MonoBehaviour, MissionEventListener
+public class EventNotificationController : MonoBehaviour
 {
+    public static EventNotificationController instance { get; private set; }
+
     private List<EventNotification> eventList;
 
     [SerializeField] private GameObject notificationPrefab;
@@ -14,12 +16,9 @@ public class EventNotificationController : MonoBehaviour, MissionEventListener
 
     public void Awake()
     {
-        eventList = new List<EventNotification>();
-    }
+        instance = this;
 
-    public void Start()
-    {
-        MissionEventManager.AddEventListener(this);
+        eventList = new List<EventNotification>();
     }
 
     public void Update()
@@ -36,12 +35,9 @@ public class EventNotificationController : MonoBehaviour, MissionEventListener
         }
     }
 
-    public void OnNotify(MissionEvent e)
+    public static void PushNotification(string name, int duration)
     {
-        if (MissionEventManager.IsImportant(e))
-        {
-            AddEVent(e);
-        }
+        instance.AddEVent(name, duration);
     }
 
     public void EndEvent(EventNotification e)
@@ -50,11 +46,11 @@ public class EventNotificationController : MonoBehaviour, MissionEventListener
         Destroy(e.gameObject);
     }
 
-    private void AddEVent(MissionEvent e)
+    private void AddEVent(string name, int duration)
     {
         EventNotification notification = Instantiate(notificationPrefab).GetComponent<EventNotification>();
         notification.transform.SetParent(transform);
-        notification.Init(this, Enumerations.GetDescription(e), 5);
+        notification.Init(this, name, 5);
         eventList.Add(notification);
     }
 }
