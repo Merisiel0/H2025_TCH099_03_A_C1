@@ -20,15 +20,14 @@ public class LevitatingLightsModule : ModuleUI, MissionEventListener
     private Image[] lights;
     private Image[] levers;
     private bool[] solution;
-    private LevitatingLightsModuleData data;
     private bool activated = false;
 
     public void OnNotify(MissionEvent e)
     {
         if (e == MissionEvent.LightsOut)
         {
-            ApiController.FetchDataFromAPI<ModuleEventResponse<LevitatingLightsModuleData>>(apiUrl, (data) => {
-                data.Init(this);
+            ApiController.FetchDataFromAPI<LightsEventResponse>(apiUrl, (data) => {
+                data.eventData.Init(this);
                 InitModule(data.module);
             });
         }
@@ -37,8 +36,6 @@ public class LevitatingLightsModule : ModuleUI, MissionEventListener
     private void Start()
     {
         base.Start();
-
-        data = new LevitatingLightsModuleData();
 
         lights = lightsContainer.GetComponentsInChildren<Image>();
         levers = leversContainer.GetComponentsInChildren<Image>();
@@ -56,9 +53,9 @@ public class LevitatingLightsModule : ModuleUI, MissionEventListener
         MissionEventManager.AddEventListener(this);
     }
 
-    public void InitModule(LevitatingLightsModuleData newData)
+    public void InitModule(LevitatingLightsModuleData data)
     {
-        data = newData.Init();
+        data = data.Init();
 
         solution = new bool[data.solution.Length];
         for (int i = 0; i < solution.Length; i++)

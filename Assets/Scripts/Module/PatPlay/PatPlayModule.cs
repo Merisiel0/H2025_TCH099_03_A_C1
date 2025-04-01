@@ -48,8 +48,8 @@ public class PatPlayModule : ModuleUI, MissionEventListener
     {
         if (e == MissionEvent.PatPlayTrigger)
         {
-            ApiController.FetchDataFromAPI<ModuleEventResponse<PatPlayModuleData>>(apiUrl, (data) => {
-                data.Init(this);
+            ApiController.FetchDataFromAPI<PatPlayEventResponse>(apiUrl, (data) => {
+                data.eventData.Init(this);
                 InitModule(data.module);
             });
 

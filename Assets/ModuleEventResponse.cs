@@ -12,17 +12,40 @@ public class EventResponse
     public string couleur;
     public string typeModule;
     public string matricule;
-}
-
-[System.Serializable]
-public class ModuleEventResponse<T>
-{
-    public T module;
-    public EventResponse eventData;
 
     public void Init(ModuleUI module)
     {
-        module.InitModule("TEST", eventData.duree);
-        EventNotificationController.PushNotification(eventData.description, eventData.duree);
+        module.InitModule(nom, duree);
+        EventNotificationController.PushNotification(description, duree);
     }
 }
+
+// API Responses templates for each modules
+[System.Serializable]
+public class WiresEventResponse<T>
+{
+    public T module;
+    public EventResponse eventData;
+}
+
+[System.Serializable]
+public class BipolarityEventResponse
+{
+    public BipolarityModuleData module;
+    public EventResponse eventData;
+}
+
+[System.Serializable]
+public class LightsEventResponse
+{
+    public LevitatingLightsModuleData module;
+    public EventResponse eventData;
+}
+
+[System.Serializable]
+public class PatPlayEventResponse
+{
+    public PatPlayModuleData module;
+    public EventResponse eventData;
+}
+
