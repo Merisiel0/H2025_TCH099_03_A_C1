@@ -27,7 +27,7 @@ public class LevitatingLightsModule : ModuleUI, MissionEventListener
         if (e == MissionEvent.LightsOut)
         {
             ApiController.FetchDataFromAPI<ModuleEventRespone<LevitatingLightsModuleData>>(apiUrl, (data) => {
-                data.eventData.Init(this);
+                data.Init(this);
                 InitModule(data.module);
             });
         }

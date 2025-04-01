@@ -12,12 +12,6 @@ public class EventResponse
     public string couleur;
     public string typeModule;
     public string matricule;
-
-    public void Init(ModuleUI module)
-    {
-        module.InitModule(nom, duree);
-        EventNotificationController.PushNotification(description, duree);
-    }
 }
 
 // API Responses templates for each modules
@@ -26,4 +20,10 @@ public class ModuleEventRespone<T>
 {
     public T module;
     public EventResponse eventData;
+
+    public void Init(ModuleUI module)
+    {
+        module.InitModule(eventData.nom, eventData.duree);
+        EventNotificationController.PushNotification(eventData.description, eventData.duree);
+    }
 }

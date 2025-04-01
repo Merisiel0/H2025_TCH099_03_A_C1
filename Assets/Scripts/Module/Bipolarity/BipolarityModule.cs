@@ -81,7 +81,7 @@ public class BipolarityModule : ModuleUI, MissionEventListener
         if(e == MissionEvent.ThrustersShutdown)
         {
             ApiController.FetchDataFromAPI<ModuleEventRespone<BipolarityModuleData>>(apiUrl, (data) => {
-                data.eventData.Init(this);
+                data.Init(this);
                 InitModule(data.module);
             });
 
