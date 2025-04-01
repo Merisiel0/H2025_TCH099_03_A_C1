@@ -31,11 +31,6 @@ public class LevitatingLightsModule : ModuleUI, MissionEventListener
                 data.Init();
                 InitModule(data.module);
             });
-            //data = new LevitatingLightsModuleData();
-            //data.lights = "XOOXOXOXO";
-            //data.solution = "100101";
-
-            //InitModule(data);
         }
     }
 

@@ -68,13 +68,15 @@ public class MissionEventManager : MonoBehaviour, MissionEventListener
     /// </summary>
     [SerializeField] private MissionEventStatus[] launchableEvents;
 
-    private static MissionEventManager instance; // Instance du singleton statique
+    public MissionEventStatus[] GetLaunchableEvents() { return launchableEvents; }
+
+    public static MissionEventManager instance; // Instance du singleton statique
 
     private List<MissionEventListener> listeners; // Liste des observeurs
 
     public static bool IsImportant(MissionEvent targetEvent)
     {
-        if(importantEvents.Any(importantEvent => targetEvent == importantEvent))
+        if (importantEvents.Any(importantEvent => targetEvent == importantEvent))
         {
             return true;
         }
@@ -106,15 +108,15 @@ public class MissionEventManager : MonoBehaviour, MissionEventListener
 
         // Lancement d'un évent random qui n'est pas déjà déclenché
         List<int> inactiveEvents = new List<int>();
-        for(int i = 0; i < launchableEvents.Length; i++)
+        for (int i = 0; i < launchableEvents.Length; i++)
         {
-            if(!launchableEvents[i].isActive)
+            if (!launchableEvents[i].isActive)
             {
                 inactiveEvents.Add(i);
             }
         }
 
-        if(inactiveEvents.Count > 0)
+        if (inactiveEvents.Count > 0)
         {
             int eventIndex = inactiveEvents[Random.Range(0, inactiveEvents.Count)];
             SendEvent(launchableEvents[eventIndex].trigger);
@@ -133,7 +135,7 @@ public class MissionEventManager : MonoBehaviour, MissionEventListener
     public static void SendEvent(MissionEvent e)
     {
         // Envoie ï¿½ chacun des observeur.
-        foreach(MissionEventListener listener in instance.listeners)
+        foreach (MissionEventListener listener in instance.listeners)
         {
             listener.OnNotify(e);
         }
@@ -151,8 +153,9 @@ public class MissionEventManager : MonoBehaviour, MissionEventListener
     public void OnNotify(MissionEvent e)
     {
         // Mise à jour de l'état actuel des modules lors d'un événement
-        foreach (MissionEventStatus status in launchableEvents) {
-            if(e == status.solver)
+        foreach (MissionEventStatus status in launchableEvents)
+        {
+            if (e == status.solver)
             {
                 status.isActive = false;
             }
