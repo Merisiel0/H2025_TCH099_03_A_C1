@@ -10274,6 +10274,7 @@ MonoBehaviour:
   btnGap: 30
   panel: {fileID: 1574815075}
   hintPanel: {fileID: 1198347807}
+  hintText: {fileID: 20270918}
 --- !u!1 &1282653921
 GameObject:
   m_ObjectHideFlags: 0
