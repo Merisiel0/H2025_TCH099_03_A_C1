@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ElectricPanelModule : ModuleUI, MissionEventListener
 {
-    private static string apiUrl = "fils";
+    private static string apiUrl = "/api/v1/module?module=wires";
 
     private WireModuleData data;
 
@@ -71,9 +71,9 @@ public class ElectricPanelModule : ModuleUI, MissionEventListener
     {
         if(e == MissionEvent.ElectricFailure)
         {
-            ApiController.FetchDataFromAPI<WireModuleData>(apiUrl, 
-                (data) => {
-                    InitModule(data);
+            ApiController.FetchDataFromAPI<ModuleEventResponse<WireModuleData>>(apiUrl, (data) => {
+                data.Init();
+                InitModule(data.module);
             });
 
             // UNCOMMENT THIS PART FOR MANUAL MODULE DATA CREATIONS
