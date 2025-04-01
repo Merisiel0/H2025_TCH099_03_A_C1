@@ -34,6 +34,7 @@ public class BipolarityModule : ModuleUI, MissionEventListener
         } else
         {
             MissionEventManager.SendEvent(MissionEvent.ThrustersStart);
+            ModuleSucess();
             PlayerInteract.StopInteractions();
         }
     }
@@ -80,7 +81,7 @@ public class BipolarityModule : ModuleUI, MissionEventListener
         if(e == MissionEvent.ThrustersShutdown)
         {
             ApiController.FetchDataFromAPI<ModuleEventResponse<BipolarityModuleData>>(apiUrl, (data) => {
-                data.Init();
+                data.Init(this);
                 InitModule(data.module);
             });
 

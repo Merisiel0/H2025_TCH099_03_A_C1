@@ -2,9 +2,17 @@
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
+using TMPro;
 
-public class ModuleUI : MonoBehaviour
+public abstract class ModuleUI : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI serialText;
+
+    public void OnTimerEnd()
+    {
+        MissionEventManager.SendEvent(MissionEvent.PlayerEventFailed);
+    }
+
     // Position pour l'ouverture et la fermeture de l'�cran du module
     private static float openedPosition = 0.0f;
     private float closedPosition;
@@ -30,5 +38,22 @@ public class ModuleUI : MonoBehaviour
         LeanTween.moveLocalY(gameObject, closedPosition, animationDuration)
                     .setEase(LeanTweenType.easeInCubic);
         UIEnabled = false;
+    }
+
+    public void InitModule(string serial, int duration)
+    {
+        serialText.text = serial;
+        StartCoroutine(WaitForEndOfModuleTime(duration));
+    }
+
+    protected void ModuleSucess()
+    {
+        StopAllCoroutines(); // Arret du timer
+    }
+
+    private IEnumerator WaitForEndOfModuleTime(int time)
+    {
+        yield return new WaitForSeconds(time);
+        OnTimerEnd();
     }
 }

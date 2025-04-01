@@ -28,7 +28,7 @@ public class LevitatingLightsModule : ModuleUI, MissionEventListener
         if (e == MissionEvent.LightsOut)
         {
             ApiController.FetchDataFromAPI<ModuleEventResponse<LevitatingLightsModuleData>>(apiUrl, (data) => {
-                data.Init();
+                data.Init(this);
                 InitModule(data.module);
             });
         }
@@ -68,7 +68,7 @@ public class LevitatingLightsModule : ModuleUI, MissionEventListener
 
         for (int i = 0; i < lights.Length; i++)
         {
-            if (data.lights[i] == 'O')
+            if (data.lumiere[i] == 'O')
             {
                 lights[i].color = lightOn;
             }
@@ -95,6 +95,7 @@ public class LevitatingLightsModule : ModuleUI, MissionEventListener
 
             // if all levers are good, quit module
             PlayerInteract.StopInteractions();
+            ModuleSucess();
             activated = false;
             MissionEventManager.SendEvent(MissionEvent.LightsOn);
         }
