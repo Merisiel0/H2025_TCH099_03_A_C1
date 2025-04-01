@@ -50,7 +50,7 @@ public class EventNotificationController : MonoBehaviour
     {
         EventNotification notification = Instantiate(notificationPrefab).GetComponent<EventNotification>();
         notification.transform.SetParent(transform);
-        notification.Init(this, name, 5);
+        notification.Init(this, name, duration);
         eventList.Add(notification);
     }
 }

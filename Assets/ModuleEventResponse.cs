@@ -14,15 +14,16 @@ public class EventResponse
     public string matricule;
 }
 
+// API Responses templates for each modules
 [System.Serializable]
-public class ModuleEventResponse<T>
+public class ModuleEventRespone<T>
 {
     public T module;
     public EventResponse eventData;
 
     public void Init(ModuleUI module)
     {
-        module.InitModule("TEST", eventData.duree);
+        module.InitModule(eventData.nom, eventData.duree);
         EventNotificationController.PushNotification(eventData.description, eventData.duree);
     }
 }

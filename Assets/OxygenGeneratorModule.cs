@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class OxygenGeneratorModule : ModuleUI
 {
-    [SerializeField] private float timerLength = 30f;
+    [SerializeField] private float timerLength = 60f;
     [SerializeField] private Image progressBar;
 
     private float oldValue = 0f;
