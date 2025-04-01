@@ -13,11 +13,19 @@ public class AdminMenu : MonoBehaviour
     [SerializeField] private int btnGap = 30;
     [SerializeField] private GameObject panel;
     [SerializeField] private GameObject hintPanel;
+    [SerializeField] private GameObject hintText;
 
     void Start()
     {
         panel.SetActive(false);
+        hintPanel.SetActive(false);
+        hintText.SetActive(false);
+
+        if (!UserConnectionObject.GetInstance().data.admin)
+            return;
+
         hintPanel.SetActive(true);
+        hintText.SetActive(true);
 
         MissionEventStatus[] statuses = MissionEventManager.instance.GetLaunchableEvents();
         float btnHeight = btnPrefab.GetComponent<RectTransform>().rect.height;
@@ -57,7 +65,7 @@ public class AdminMenu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return) && UserConnectionObject.GetInstance().data.admin)
         {
             panel.SetActive(!panel.activeInHierarchy);
             hintPanel.SetActive(!panel.activeInHierarchy);

@@ -14,7 +14,7 @@ public class ConnectionResponse
 
     public void Validate()
     {
-        if(utilisateur == null || token == null)
+        if (utilisateur == null || token == null)
         {
             throw new ArgumentNullException();
         }
@@ -31,6 +31,8 @@ public class UserConnectionObject : MonoBehaviour
 {
     private static UserConnectionObject instance = null;
 
+    public static UserConnectionObject GetInstance() { return instance; }
+
     public ConnectionResponse data;
 
     public static void Disconnect()
@@ -43,8 +45,8 @@ public class UserConnectionObject : MonoBehaviour
 
     private void Awake()
     {
-        // On remplace l'ancienne instance si elle existe encore. Permet une gestion simplifié du singleton.
-        // => Dernier arrivé = le seul qui existe.
+        // On remplace l'ancienne instance si elle existe encore. Permet une gestion simplifiï¿½ du singleton.
+        // => Dernier arrivï¿½ = le seul qui existe.
         if (instance != null) Destroy(instance.gameObject);
         instance = this;
 
@@ -88,7 +90,7 @@ public class ConnectionMenu : MonoBehaviour
 
     public void Connect()
     {
-        if(usernameInupt.text.Length < 1 || passwordInput.text.Length < 1)
+        if (usernameInupt.text.Length < 1 || passwordInput.text.Length < 1)
         {
             errorText.gameObject.SetActive(true);
             errorText.text = "Veuillez remplir tous les champs.";
@@ -100,7 +102,8 @@ public class ConnectionMenu : MonoBehaviour
         request.mdp = passwordInput.text;
 
         string body = JsonUtility.ToJson(request);
-        ApiController.PostJsonToAPI(apiRoute, body, (data) => {
+        ApiController.PostJsonToAPI(apiRoute, body, (data) =>
+        {
             try
             {
                 ConnectionResponse rep = JsonUtility.FromJson<ConnectionResponse>(data);
@@ -110,9 +113,9 @@ public class ConnectionMenu : MonoBehaviour
                 UserConnectionObject dataContainer = new GameObject("UserConnectionContainer")
                     .AddComponent<UserConnectionObject>()
                     .Init(rep);
-                
+
                 errorText.gameObject.SetActive(false);
-                Debug.Log("Utilisateur Connectée!");
+                Debug.Log("Utilisateur Connectï¿½e!");
                 mainMenu.OpenMainMenu();
 
                 usernameInupt.text = "";
