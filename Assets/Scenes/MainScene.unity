@@ -1272,6 +1272,9 @@ MonoBehaviour:
   - trigger: 1
     solver: 2
     isActive: 0
+  - trigger: 7
+    solver: 8
+    isActive: 0
 --- !u!114 &157691661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3246,6 +3249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 056f135aae8ab44b8a621f5a60c93bc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serialText: {fileID: 0}
   animationDuration: 0.15
   startTimout: 0.5
   roundTimeout: 0.5
@@ -4313,6 +4317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ac4e2ba35b8e7d438eb8e05fa3c8903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serialText: {fileID: 0}
   animationDuration: 0.15
   timerLength: 30
   progressBar: {fileID: 1743901221}
@@ -6537,6 +6542,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b28fd26f95af0a6d3a6de9a2fa9198aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serialText: {fileID: 0}
   animationDuration: 0.15
   lightOn: {r: 0.0039604935, g: 0.8396226, b: 0.23318449, a: 1}
   lightOff: {r: 0, g: 0.20136881, b: 0.037541613, a: 1}
@@ -7796,6 +7802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a13caedd5e13c14c85531bb400b63b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serialText: {fileID: 0}
   animationDuration: 0.15
   wirePrefab: {fileID: 4804577896520001542, guid: 3c968a1a6381f934fb50e1a144376a59, type: 3}
   wireImages:
@@ -10196,6 +10203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7f7ab215a8dc9f428e8badaf69f3fe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serialText: {fileID: 0}
   animationDuration: 0.15
   texts:
   - {fileID: 2001630514}
