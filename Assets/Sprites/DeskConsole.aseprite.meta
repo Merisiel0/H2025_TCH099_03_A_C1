@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e64fcc0aba22bc0c3a9dab7bab488e88
+guid: 99dbfc2de61ed3b4aa8cb980b577038c
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -98,7 +98,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638778177140525560
+  platformSettingsDirtyTick: 638788881034248671
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -122,18 +122,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Frame_0
+  - name: DeskConsole
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: -0.33333334}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 320
-      height: 240
-    spriteID: aec89089f8fae26879ad39ff43a61cdb
+      width: 32
+      height: 12
+    spriteID: 8e8554996eb494c4c826d82b3ff6d986
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,140 +142,24 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: Frame_1
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 332
-      y: 4
-      width: 320
-      height: 240
-    spriteID: abfcb796dc74ada93a17cfbf2e43add4
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 332, y: 4}
-  - name: Frame_2
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 660
-      y: 4
-      width: 320
-      height: 240
-    spriteID: cf42b6af350f7c2b188f8aaa294b9463
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 660, y: 4}
-  - name: Frame_3
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 252
-      width: 320
-      height: 240
-    spriteID: 36a36a59ce50e68109e9be5fb194d7e8
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 252}
-  - name: Frame_4
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 332
-      y: 252
-      width: 320
-      height: 240
-    spriteID: 5be8ab0276e9e924297d624ec6124f98
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 332, y: 252}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1922190065
-    name: BSP_modules
+    guid: 1313256188
+    name: DeskConsole
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Frame_0
+    - name: DeskConsole
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
         x: 0
-        y: 0
-        width: 320
-        height: 240
-      spriteId: aec89089f8fae26879ad39ff43a61cdb
-    - name: Frame_1
-      frameIndex: 1
-      additiveSortOrder: 0
-      cellRect:
-        x: 0
-        y: 0
-        width: 320
-        height: 240
-      spriteId: abfcb796dc74ada93a17cfbf2e43add4
-    - name: Frame_2
-      frameIndex: 2
-      additiveSortOrder: 0
-      cellRect:
-        x: 0
-        y: 0
-        width: 320
-        height: 240
-      spriteId: cf42b6af350f7c2b188f8aaa294b9463
-    - name: Frame_3
-      frameIndex: 3
-      additiveSortOrder: 0
-      cellRect:
-        x: 0
-        y: 0
-        width: 320
-        height: 240
-      spriteId: 36a36a59ce50e68109e9be5fb194d7e8
-    - name: Frame_4
-      frameIndex: 4
-      additiveSortOrder: 0
-      cellRect:
-        x: 0
-        y: 0
-        width: 320
-        height: 240
-      spriteId: 5be8ab0276e9e924297d624ec6124f98
+        y: 4
+        width: 32
+        height: 12
+      spriteId: 8e8554996eb494c4c826d82b3ff6d986
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -318,5 +202,5 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 320, y: 240}
-  previousTextureSize: {x: 1024, y: 512}
+  canvasSize: {x: 32, y: 16}
+  previousTextureSize: {x: 64, y: 32}

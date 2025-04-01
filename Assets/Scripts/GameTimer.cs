@@ -9,7 +9,9 @@ using UnityEngine.UIElements;
 /// </summary>
 public class GameTimer : MonoBehaviour
 {
-    private static GameTimer instance;
+    public static GameTimer instance { get; private set; }
+
+    public float startTime { get; private set; }
 
     public int totalTime = 360;
     public int remainingTime { get; private set; }
@@ -36,7 +38,7 @@ public class GameTimer : MonoBehaviour
     {
         if (LevelDataObject.Exists())
         {
-            totalTime = LevelDataObject.Get().duration;
+            totalTime = LevelDataObject.Get().duree;
         }
 
         // Initialisation du minuteur
@@ -45,6 +47,7 @@ public class GameTimer : MonoBehaviour
         UpdateTimerText();
 
         // On commence le décompte
+        startTime = Time.time;
         StartCoroutine(ExecuteTimer());
     }
 

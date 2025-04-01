@@ -4,21 +4,29 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /// <summary>
 /// Classe qui permet de g�rer la logique des boutons et des menus du menu principal (�cran d'acceuil)
 /// </summary>
 public class MainMenu : MonoBehaviour
 {
+    [Header("Main Menu UI")]
+    [SerializeField] private Button connectionMenuButton;
+    [SerializeField] private GameObject disconnectButton;
+
+    [Header("Level Menu UI")]
     public GameObject levelButtonPrefab; // Pr�fab pour un boutton d'option de niveau
     public GameObject levelButtonHolder; // Conteneur qui contient tous les bouttons d'option de niveau
 
+    [Header("Menus")]
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject levelMenu;
     [SerializeField] private GameObject connexionMenu;
     [SerializeField] private GameObject inscriptionMenu;
     private GameObject currentlyOpenedMenu;
 
+    [Header("Animations")]
     [SerializeField] private FadeAnimation fadeTransition;
     private static float transitionDuration = 0.3f;
 
@@ -35,12 +43,20 @@ public class MainMenu : MonoBehaviour
 
     public void OpenMainMenu()
     {
+        if(UserConnectionObject.Exists())
+        {
+            connectionMenuButton.interactable = false;
+            disconnectButton.SetActive(true);
+        } else
+        {
+            connectionMenuButton.interactable = true;
+            disconnectButton.SetActive(false);
+        }
+
         // open menu
         LeanTween.moveLocalY(mainMenu, openedMenuPosY, transitionDuration).setEase(LeanTweenType.easeOutCubic);
-
         // close currently opened menu
         LeanTween.moveLocalY(currentlyOpenedMenu, closedMenuPosY, transitionDuration).setEase(LeanTweenType.easeOutCubic);
-
         // set newly opened menu
         currentlyOpenedMenu = mainMenu;
     }
