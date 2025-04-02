@@ -9,7 +9,7 @@ public class OxygenGeneratorModule : ModuleUI
     [SerializeField] private Image progressBar;
 
     private float oldValue = 0f;
-    private float value = 1f;
+    [SerializeField] private float value = 1f;
     private float criticalValue;
 
     private bool buttonPressed = false;
@@ -38,6 +38,8 @@ public class OxygenGeneratorModule : ModuleUI
 
         oldValue = value;
         value += modifier;
+
+        value = Mathf.Min(1.0f, value); // Max à la valeur
 
         if(value < criticalValue && oldValue >= criticalValue)
         {

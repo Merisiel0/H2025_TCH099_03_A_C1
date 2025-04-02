@@ -17,8 +17,8 @@ public class LevitatingLightsModule : ModuleUI, MissionEventListener
     public Color leverColor;
     [SerializeField] private GameObject lightsContainer;
     [SerializeField] private GameObject leversContainer;
-    private Image[] lights;
-    private Image[] levers;
+    [SerializeField] private Image[] lights;
+    [SerializeField] private Image[] levers;
     private bool[] solution;
     private bool activated = false;
 
@@ -36,9 +36,6 @@ public class LevitatingLightsModule : ModuleUI, MissionEventListener
     private void Start()
     {
         base.Start();
-
-        lights = lightsContainer.GetComponentsInChildren<Image>();
-        levers = leversContainer.GetComponentsInChildren<Image>();
 
         foreach (Image light in lights)
         {

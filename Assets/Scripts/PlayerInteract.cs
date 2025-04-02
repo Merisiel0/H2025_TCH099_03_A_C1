@@ -63,13 +63,14 @@ public class PlayerInteract : MonoBehaviour
                     Interactable interactableObject = hit.GetComponent<Interactable>();
                     if (interactableObject != null)
                     {
-                        interactableObject.Interact();
-
-                        if (interactableObject is Module module)
+                        if(interactableObject.Interact())
                         {
-                            m_currentlyOpenedModule = module;
-                            m_controller.StopMoving();
-                            m_controller.enabled = false;
+                            if (interactableObject is Module module)
+                            {
+                                m_currentlyOpenedModule = module;
+                                m_controller.StopMoving();
+                                m_controller.enabled = false;
+                            }
                         }
                     }
                 }
@@ -84,7 +85,6 @@ public class PlayerInteract : MonoBehaviour
         {
             CloseCurrentModule();
         }
-        
     }
 
     private void CloseCurrentModule()

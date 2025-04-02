@@ -19,8 +19,9 @@ public class Chair : Interactable
         turnVelocity = Random.Range(minTurnVelocity, maxTurnVelocity);
     }
 
-    public override void Interact()
+    public override bool Interact()
     {
         _rb.angularVelocity = turnVelocity;
+        return true;
     }
 }

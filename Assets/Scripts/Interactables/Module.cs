@@ -11,6 +11,9 @@ public class Module : Interactable, MissionEventListener
     [SerializeField] private MissionEvent startEvent;
     [SerializeField] private MissionEvent endEvent;
 
+    [SerializeField] private bool allowOpenningAnytime = false;
+    private bool isActive = false;
+
     private bool opened = false;
 
     protected override void Start()
@@ -28,19 +31,22 @@ public class Module : Interactable, MissionEventListener
         alarmIndicator.SetActive(show);
     }
 
-    public override void Interact()
+    public override bool Interact()
     {
         if (opened)
         {
             moduleUI.DisableUI();
             opened = false;
+            return true;
         }
-        else
+        else if(isActive || allowOpenningAnytime)
         {
             moduleUI.gameObject.SetActive(true); // Protection en cas de problème
             moduleUI.EnableUI();
             opened = true;
+            return true;
         }
+        return false;
     }
 
     public void OnNotify(MissionEvent e)
@@ -48,10 +54,12 @@ public class Module : Interactable, MissionEventListener
         if(e == startEvent)
         {
             ShowIndicator(true);
+            isActive = true;
         } 
         else if(e == endEvent)
         {
             ShowIndicator(false);
+            isActive = false;
         }
     }
 }

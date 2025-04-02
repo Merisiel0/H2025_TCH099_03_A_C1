@@ -41,7 +41,7 @@ public class LevelOptionButton : MonoBehaviour, IPointerClickHandler
         this.mainMenu = mainMenu;
         this.levelData = data;
 
-        headerText.SetText(data.nom + " - " + data.duree);
+        headerText.SetText(data.nom + " - " + data.difficulte);
         descriptionText.SetText(data.description);
 
         string minutes = (data.duree / 60).ToString();

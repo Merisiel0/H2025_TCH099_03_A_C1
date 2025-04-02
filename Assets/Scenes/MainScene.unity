@@ -184,7 +184,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'God mode: Enter'
+  m_text: 'God mode: Tab'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1592,7 +1592,7 @@ GameObject:
   - component: {fileID: 200178017}
   - component: {fileID: 200178016}
   m_Layer: 5
-  m_Name: Light6
+  m_Name: Light4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1724,7 +1724,7 @@ GameObject:
   - component: {fileID: 208587357}
   - component: {fileID: 208587356}
   m_Layer: 5
-  m_Name: Light8
+  m_Name: Light0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2110,15 +2110,15 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 501831814}
+  - {fileID: 208587355}
   - {fileID: 1436851211}
+  - {fileID: 395371034}
+  - {fileID: 501831814}
+  - {fileID: 200178015}
   - {fileID: 1452461703}
+  - {fileID: 1150870948}
   - {fileID: 776890009}
   - {fileID: 1054788465}
-  - {fileID: 1150870948}
-  - {fileID: 200178015}
-  - {fileID: 395371034}
-  - {fileID: 208587355}
   m_Father: {fileID: 883217264}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2462,8 +2462,9 @@ MonoBehaviour:
   outline: {fileID: 422320793}
   moduleUI: {fileID: 552059092}
   alarmIndicator: {fileID: 369824201}
-  startEvent: 8
-  endEvent: 9
+  startEvent: 10
+  endEvent: 11
+  allowOpenningAnytime: 1
 --- !u!4 &321737547 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4141794887681035707, guid: 7dc8f678511ed8f4c91d0abe88d140de, type: 3}
@@ -2876,7 +2877,7 @@ GameObject:
   - component: {fileID: 395371036}
   - component: {fileID: 395371035}
   m_Layer: 5
-  m_Name: Light7
+  m_Name: Light2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3378,7 +3379,7 @@ GameObject:
   - component: {fileID: 501831816}
   - component: {fileID: 501831815}
   m_Layer: 5
-  m_Name: Light0
+  m_Name: Light3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4186,12 +4187,12 @@ GameObject:
   - component: {fileID: 552059088}
   - component: {fileID: 552059092}
   m_Layer: 5
-  m_Name: NeedyModule
+  m_Name: OxygenModule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &552059087
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4319,8 +4320,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serialText: {fileID: 0}
   animationDuration: 0.15
-  timerLength: 30
+  timerLength: 90
   progressBar: {fileID: 1743901221}
+  value: 1
 --- !u!1 &595819749
 GameObject:
   m_ObjectHideFlags: 0
@@ -5031,6 +5033,7 @@ MonoBehaviour:
   alarmIndicator: {fileID: 1155837976}
   startEvent: 3
   endEvent: 4
+  allowOpenningAnytime: 0
 --- !u!1 &643517374
 GameObject:
   m_ObjectHideFlags: 0
@@ -5618,7 +5621,7 @@ GameObject:
   - component: {fileID: 776890011}
   - component: {fileID: 776890010}
   m_Layer: 5
-  m_Name: Light3
+  m_Name: Light7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5982,8 +5985,9 @@ MonoBehaviour:
   outline: {fileID: 827613468}
   moduleUI: {fileID: 883217267}
   alarmIndicator: {fileID: 1407498459}
-  startEvent: 0
-  endEvent: 0
+  startEvent: 1
+  endEvent: 2
+  allowOpenningAnytime: 0
 --- !u!1 &815945035
 GameObject:
   m_ObjectHideFlags: 0
@@ -6549,6 +6553,23 @@ MonoBehaviour:
   leverColor: {r: 0.2924528, g: 0.2524475, b: 0.2524475, a: 1}
   lightsContainer: {fileID: 290845036}
   leversContainer: {fileID: 723293364}
+  lights:
+  - {fileID: 208587356}
+  - {fileID: 1436851212}
+  - {fileID: 395371035}
+  - {fileID: 501831815}
+  - {fileID: 200178016}
+  - {fileID: 1452461704}
+  - {fileID: 1150870949}
+  - {fileID: 776890010}
+  - {fileID: 1054788466}
+  levers:
+  - {fileID: 523913678}
+  - {fileID: 1555569505}
+  - {fileID: 293690501}
+  - {fileID: 803280518}
+  - {fileID: 133044157}
+  - {fileID: 160704117}
 --- !u!1 &885433640
 GameObject:
   m_ObjectHideFlags: 0
@@ -8122,9 +8143,9 @@ RectTransform:
   - {fileID: 1745172391}
   m_Father: {fileID: 1983689211}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 296.875, y: -60}
   m_SizeDelta: {x: 115, y: 115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1008886329
@@ -8397,7 +8418,7 @@ GameObject:
   - component: {fileID: 1054788467}
   - component: {fileID: 1054788466}
   m_Layer: 5
-  m_Name: Light4
+  m_Name: Light8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9438,6 +9459,7 @@ MonoBehaviour:
   alarmIndicator: {fileID: 478836089}
   startEvent: 5
   endEvent: 6
+  allowOpenningAnytime: 0
 --- !u!61 &1147494284
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9495,7 +9517,7 @@ GameObject:
   - component: {fileID: 1150870950}
   - component: {fileID: 1150870949}
   m_Layer: 5
-  m_Name: Light5
+  m_Name: Light6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9782,9 +9804,9 @@ RectTransform:
   - {fileID: 371890100}
   m_Father: {fileID: 1983689211}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 415.625, y: -60}
   m_SizeDelta: {x: 115, y: 115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1165940638
@@ -10126,7 +10148,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1254320858
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15139,9 +15161,9 @@ RectTransform:
   - {fileID: 1755466536}
   m_Father: {fileID: 1983689211}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 178.125, y: -60}
   m_SizeDelta: {x: 115, y: 115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1300633452
@@ -16046,7 +16068,7 @@ GameObject:
   - component: {fileID: 1452461705}
   - component: {fileID: 1452461704}
   m_Layer: 5
-  m_Name: Light2
+  m_Name: Light5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17667,9 +17689,9 @@ RectTransform:
   - {fileID: 76918235}
   m_Father: {fileID: 1983689211}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 59.375, y: -60}
   m_SizeDelta: {x: 115, y: 115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1766646501
@@ -19795,6 +19817,7 @@ MonoBehaviour:
   alarmIndicator: {fileID: 1945161554}
   startEvent: 0
   endEvent: 0
+  allowOpenningAnytime: 0
 --- !u!58 &2097149760
 CircleCollider2D:
   m_ObjectHideFlags: 0

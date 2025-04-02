@@ -16,8 +16,13 @@ public class AdminMenu : MonoBehaviour
         hintPanel.SetActive(false);
         hintText.SetActive(false);
 
-        if (!UserConnectionObject.Exists())
-            return;
+        if(!Application.isEditor)
+        {
+            if(!UserConnectionObject.Exists())
+            {
+                return;
+            }
+        }
 
         hintPanel.SetActive(true);
         hintText.SetActive(true);
@@ -60,7 +65,7 @@ public class AdminMenu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return) && UserConnectionObject.Exists())
+        if (Input.GetKeyDown(KeyCode.Tab) && (UserConnectionObject.Exists() || Application.isEditor))
         {
             panel.SetActive(!panel.activeInHierarchy);
             hintPanel.SetActive(!panel.activeInHierarchy);

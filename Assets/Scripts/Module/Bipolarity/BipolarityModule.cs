@@ -122,13 +122,31 @@ public class BipolarityModule : ModuleUI, MissionEventListener
         currentCharIndex = 0;
         currentSelection = 0;
 
+        data = newData.Init();
+        goodCaseColor = data.objCouleur;
+
+        for (int i = 0; i < texts.Length; i++)
+        {
+            if(i == currentSelection)
+            {
+                if (data.caseChoisie - 1 == i)
+                {
+                    texts[i].color = goodCaseColor;
+                } else 
+                {
+                    texts[i].color = selectedTextColor;
+                }
+            } 
+            else
+            {
+                texts[i].color = regularTextColor;
+            }
+        }
+
         foreach (TextMeshProUGUI text in inputTexts)
         {
             text.text = "";
         }
-
-        data = newData.Init();
-        goodCaseColor = data.objCouleur;
 
         texts[0].SetText(data.lettre1);
         texts[1].SetText(data.lettre2);

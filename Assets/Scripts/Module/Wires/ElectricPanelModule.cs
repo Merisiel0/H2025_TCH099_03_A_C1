@@ -13,7 +13,8 @@ public class ElectricPanelModule : ModuleUI, MissionEventListener
     [SerializeField] private Sprite[] wireImages;
     [SerializeField] private Transform[] wireContainers = new Transform[6];
     [SerializeField] private Wire[] wires = new Wire[6];
-
+    private int solution = 0;
+        
     public void Start()
     {
         base.Start();
@@ -35,10 +36,18 @@ public class ElectricPanelModule : ModuleUI, MissionEventListener
         this.data = data;
 
         data.Init(); // On s'assure que la data soit bien à jours
-        for(int i = 0; i < data.nbFils; i++)
+        int count = 0;
+        for(int i = 0; i < wires.Length; i++)
         {
-            if (data.couleurs[i] != "NULL")
+            if (data.couleurs[i] != "")
             {
+                count++;
+                if(count == data.solution)
+                {
+                    solution = i;
+                    Debug.Log(solution);
+                }
+
                 Color color = HexToColor.FromHex(data.couleurs[i]);
                 GameObject wireObj = Instantiate(wirePrefab);
                 wireObj.transform.SetParent(wireContainers[i]);
@@ -55,7 +64,7 @@ public class ElectricPanelModule : ModuleUI, MissionEventListener
     {
         Destroy(wires[index].gameObject);
 
-        if(index != data.solution)
+        if(index != solution)
         {
             MissionEventManager.SendEvent(MissionEvent.PlayerEventFailed);
             PlayerInteract.StopInteractions();
