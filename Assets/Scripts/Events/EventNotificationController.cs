@@ -21,20 +21,6 @@ public class EventNotificationController : MonoBehaviour
         eventList = new List<EventNotification>();
     }
 
-    public void Update()
-    {
-        // TODO: RETIRER LES TEST
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            MissionEventManager.SendEvent(MissionEvent.LightsOut);
-        }
-        
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            MissionEventManager.SendEvent(MissionEvent.LightsOn);
-        }
-    }
-
     public static void PushNotification(string name, int duration)
     {
         instance.AddEVent(name, duration);

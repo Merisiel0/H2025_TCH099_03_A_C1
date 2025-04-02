@@ -19815,8 +19815,8 @@ MonoBehaviour:
   outline: {fileID: 1460640436}
   moduleUI: {fileID: 478457769}
   alarmIndicator: {fileID: 1945161554}
-  startEvent: 0
-  endEvent: 0
+  startEvent: 7
+  endEvent: 8
   allowOpenningAnytime: 0
 --- !u!58 &2097149760
 CircleCollider2D:
