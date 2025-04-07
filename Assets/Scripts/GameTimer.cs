@@ -92,7 +92,7 @@ public class GameTimer : MonoBehaviour
     {
         if(remainingTime > 0)
         {
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSecondsRealtime(1.0f);
 
             if(!isPaused)
             {
