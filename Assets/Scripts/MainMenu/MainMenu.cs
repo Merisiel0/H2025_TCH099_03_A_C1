@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -39,6 +40,17 @@ public class MainMenu : MonoBehaviour
         openedMenuPosY = 0.0f;
         closedMenuPosY = levelMenu.transform.localPosition.y;
         currentlyOpenedMenu = mainMenu;
+
+        if (UserConnectionObject.Exists())
+        {
+            connectionMenuButton.interactable = false;
+            disconnectButton.SetActive(true);
+        }
+        else
+        {
+            connectionMenuButton.interactable = true;
+            disconnectButton.SetActive(false);
+        }
     }
 
     public void OpenMainMenu()
@@ -116,7 +128,10 @@ public class MainMenu : MonoBehaviour
 
             if (response != null && data != null)
             {
-                foreach (LevelData level in data.levels)
+                // Trier les niveuax en fonctoin de la durée.
+                List<LevelData> sortedLevels = data.levels.OrderBy(level => level.duree).ToList();
+                
+                foreach (LevelData level in sortedLevels)
                 {
                     LevelOptionButton levelOption = Instantiate(levelButtonPrefab).GetComponent<LevelOptionButton>();
                     levelOption.transform.SetParent(levelButtonHolder.transform);
