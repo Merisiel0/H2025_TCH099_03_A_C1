@@ -15,6 +15,7 @@ public class MainMenu : MonoBehaviour
     [Header("Main Menu UI")]
     [SerializeField] private Button connectionMenuButton;
     [SerializeField] private GameObject disconnectButton;
+    [SerializeField] private GameObject mainMenuSignupButton;
 
     [Header("Level Menu UI")]
     public GameObject levelButtonPrefab; // Pr�fab pour un boutton d'option de niveau
@@ -51,11 +52,13 @@ public class MainMenu : MonoBehaviour
         {
             connectionMenuButton.interactable = false;
             disconnectButton.SetActive(true);
+            mainMenuSignupButton.SetActive(UserConnectionObject.Get().admin);
         }
         else
         {
             connectionMenuButton.interactable = true;
             disconnectButton.SetActive(false);
+            mainMenuSignupButton.SetActive(false);
         }
     }
 
@@ -65,10 +68,12 @@ public class MainMenu : MonoBehaviour
         {
             connectionMenuButton.interactable = false;
             disconnectButton.SetActive(true);
+            mainMenuSignupButton.SetActive(UserConnectionObject.Get().admin);
         } else
         {
             connectionMenuButton.interactable = true;
             disconnectButton.SetActive(false);
+            mainMenuSignupButton.SetActive(false);
         }
 
         // open menu
