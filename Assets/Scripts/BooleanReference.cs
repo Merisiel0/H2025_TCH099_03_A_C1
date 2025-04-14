@@ -1,7 +1,10 @@
-class BoolRef {
-    public bool value;
+[System.Serializable]
+public class BoolRef
+{
+  public bool value;
 
-    public BoolRef(bool value){
-        this.value = value;
-    }
+  public BoolRef(bool value)
+  {
+    this.value = value;
+  }
 }
