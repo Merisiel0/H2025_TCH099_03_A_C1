@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class SignupResponse
@@ -16,6 +17,13 @@ public class SignupError
     public string error;
 }
 
+public class AdminSignupRequest
+{
+    public string pseudo;
+    public string mdp;
+    public string token;
+}
+
 public class SignupRequest
 {
     public string pseudo;
@@ -26,11 +34,25 @@ public class SignupMenu : MonoBehaviour
 {
     [SerializeField] MainMenu mainMenu;
     private static string apiRoute = "/api/v1/utilisateur";
+    private static string adminRoute = "/api/v1/admin";
 
     [SerializeField] private TMP_InputField usernameInupt;
     [SerializeField] private TMP_InputField passwordInput;
     [SerializeField] private TMP_InputField passwordConfirmInput;
     [SerializeField] private TextMeshProUGUI errorText;
+    [SerializeField] private Toggle adminToggle;
+
+    public void Update()
+    {
+        if(UserConnectionObject.Exists() && UserConnectionObject.Get().admin)
+        {
+            adminToggle.gameObject.SetActive(true);
+        }
+        else
+        {
+            adminToggle.gameObject.SetActive(false);
+        }
+    }
 
     public void Signup()
     {
@@ -51,12 +73,28 @@ public class SignupMenu : MonoBehaviour
         }
 
         // Si les vérification passent, on envoie la requête
-        SignupRequest request = new SignupRequest();
-        request.pseudo = usernameInupt.text;
-        request.mdp = passwordInput.text;
+        string body = "";
+        string url = apiRoute;
+        if (adminToggle.gameObject.activeInHierarchy && adminToggle.isOn)
+        {
+            // Si on veut créer un admin
+            url = adminRoute;
+            AdminSignupRequest request = new AdminSignupRequest();
+            request.pseudo = usernameInupt.text;
+            request.mdp = passwordInput.text;
+            request.token = UserConnectionObject.Get().token;
+            body = JsonUtility.ToJson(request);
+        } 
+        else
+        {
+            // Si on créer un simple utilisateur
+            SignupRequest request = new SignupRequest();
+            request.pseudo = usernameInupt.text;
+            request.mdp = passwordInput.text;
+            body = JsonUtility.ToJson(request);
+        }
 
-        string body = JsonUtility.ToJson(request);
-        ApiController.PostJsonToAPI(apiRoute, body, (data) =>
+        ApiController.PostJsonToAPI(url, body, (data) =>
         {
             try
             {
