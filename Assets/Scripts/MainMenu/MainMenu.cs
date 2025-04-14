@@ -34,6 +34,12 @@ public class MainMenu : MonoBehaviour
     private float openedMenuPosY;
     private float closedMenuPosY;
 
+    private void Awake()
+    {
+        // Setup l'application pour lorsqu'elle n'est plus focus, le jeu continue
+        Application.runInBackground = true;
+    }
+
     private void Start()
     {
         // Inistialisaiton des positons ouverte et fermee des menus
