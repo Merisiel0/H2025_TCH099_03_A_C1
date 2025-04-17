@@ -150,6 +150,20 @@ public class MissionEventManager : MonoBehaviour, MissionEventListener
         instance.listeners.Add(listener);
     }
 
+    /// <summary>
+    /// Fonction qui permet le retrait d'un observateur de la liste des abonnés
+    /// </summary>
+    /// <param name="listener"></param>
+    public static void RemoveEventListener(MissionEventListener listener)
+    {
+        instance.listeners.Remove(listener);
+    }
+
+    /// <summary>
+    /// Fonction de rappel qui permet la MAJ des status pour chacun des events lancé dans le jeu, permet de
+    /// controler la gestion des evenements qui seront lancé périodiquement sans conflit ni doublons.
+    /// </summary>
+    /// <param name="e"></param>
     public void OnNotify(MissionEvent e)
     {
         // Mise à jour de l'état actuel des modules lors d'un événement

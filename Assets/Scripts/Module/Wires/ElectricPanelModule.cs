@@ -7,6 +7,9 @@ public class ElectricPanelModule : ModuleUI, MissionEventListener
 {
     private static string apiUrl = "/api/v1/module?module=wires";
 
+    public override MissionEvent startEvent => MissionEvent.ElectricFailure;
+    public override MissionEvent endEvent => MissionEvent.ElectricRestart;
+
     private WireModuleData data;
 
     [SerializeField] private GameObject wirePrefab;
@@ -45,7 +48,6 @@ public class ElectricPanelModule : ModuleUI, MissionEventListener
                 if(count == data.solution)
                 {
                     solution = i;
-                    Debug.Log(solution);
                 }
 
                 Color color = HexToColor.FromHex(data.couleurs[i]);
@@ -71,14 +73,14 @@ public class ElectricPanelModule : ModuleUI, MissionEventListener
         }
         else
         {
-            MissionEventManager.SendEvent(MissionEvent.ElectricRestart);
+            MissionEventManager.SendEvent(endEvent);
             PlayerInteract.StopInteractions();
         }
     }
 
     public void OnNotify(MissionEvent e)
     {
-        if(e == MissionEvent.ElectricFailure)
+        if(e == startEvent)
         {
             ApiController.FetchDataFromAPI<ModuleEventRespone<WireModuleData>>(apiUrl, (data) => {
                 data.Init(this);

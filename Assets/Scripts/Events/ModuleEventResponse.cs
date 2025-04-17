@@ -24,6 +24,6 @@ public class ModuleEventRespone<T>
     public void Init(ModuleUI module)
     {
         module.InitModule(eventData.matricule, eventData.duree);
-        EventNotificationController.PushNotification(eventData.description, eventData.duree);
+        EventNotificationController.PushNotification(eventData.description, eventData.duree, module.endEvent);
     }
 }
