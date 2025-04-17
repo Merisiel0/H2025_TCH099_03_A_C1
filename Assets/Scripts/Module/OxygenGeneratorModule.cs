@@ -3,10 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(AudioSource))]
 public class OxygenGeneratorModule : ModuleUI
 {
     public override MissionEvent startEvent => MissionEvent.CriticalOxygenQuantity;
     public override MissionEvent endEvent => MissionEvent.OxygenQuantityRestored;
+
+    private AudioSource source;
+    [SerializeField] private AudioClip generateSound;
+    private float maxVolume;
+    private float fadeSoundDuration = 0.3f;
 
     [SerializeField] private float timerLength = 120f;
     [SerializeField] private Image progressBar;
@@ -20,17 +26,28 @@ public class OxygenGeneratorModule : ModuleUI
     void Start()
     {
         base.Start();
+
+        source = GetComponent<AudioSource>();
+        maxVolume = source.volume;
+        source.loop = true;
+
         criticalValue = value * 0.25f; // 1/4 de la valeur
     }
 
     public void OnButtonPress()
     {
+
         buttonPressed = true;
+
+        source.volume = 0;
+        source.clip = generateSound;
+        StartCoroutine(AudioFade.FadeIn(source, fadeSoundDuration, maxVolume));
     }
 
     public void OnButtonRelease()
     {
         buttonPressed = false;
+        StartCoroutine(AudioFade.FadeOut(source, fadeSoundDuration));
     }
 
     void Update()

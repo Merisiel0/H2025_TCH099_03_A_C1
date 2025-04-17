@@ -50,10 +50,8 @@ public class LevelData
     public string difficulte = "Difficulty";
     public int duree = 9999; // temps en seconde (durée du niveau aprox)
     public string couleur = "FF00FF";
-    [JsonProperty("minTemps")]
-    public int minTemps;
-    [JsonProperty("maxTemps")]
-    public int maxTemps;
+    public int minTemps = 60;
+    public int maxTemps = 70;
 }
 
 /// <summary>

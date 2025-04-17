@@ -26,6 +26,7 @@ public class Chair : Interactable
     public override bool Interact()
     {
         source.Stop();
+        source.pitch = Random.Range(0.7f, 1f);
         source.PlayOneShot(squeakSound);
         _rb.angularVelocity = turnVelocity;
         return true;

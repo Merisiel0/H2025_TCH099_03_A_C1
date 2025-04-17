@@ -106,7 +106,6 @@ public class BipolarityModule : ModuleUI, MissionEventListener
     private void Start()
     {
         base.Start();
-
         data = new BipolarityModuleData();
 
         foreach (TextMeshProUGUI text in inputTexts)
