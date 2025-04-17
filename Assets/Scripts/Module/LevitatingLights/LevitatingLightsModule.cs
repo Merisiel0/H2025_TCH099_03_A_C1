@@ -12,6 +12,9 @@ public class LevitatingLightsModule : ModuleUI, MissionEventListener
 {
     private static string apiUrl = "/api/v1/module?module=lights";
 
+    public override MissionEvent startEvent => MissionEvent.LightsOut;
+    public override MissionEvent endEvent => MissionEvent.LightsOn;
+
     public Color lightOn;
     public Color lightOff;
     public Color leverColor;
@@ -24,7 +27,7 @@ public class LevitatingLightsModule : ModuleUI, MissionEventListener
 
     public void OnNotify(MissionEvent e)
     {
-        if (e == MissionEvent.LightsOut)
+        if (e == startEvent)
         {
             ApiController.FetchDataFromAPI<ModuleEventRespone<LevitatingLightsModuleData>>(apiUrl, (data) => {
                 data.Init(this);
@@ -89,9 +92,9 @@ public class LevitatingLightsModule : ModuleUI, MissionEventListener
 
             // if all levers are good, quit module
             PlayerInteract.StopInteractions();
-            ModuleSucess();
+            MissionEventManager.SendEvent(endEvent);
             activated = false;
-            MissionEventManager.SendEvent(MissionEvent.LightsOn);
+            ModuleSucess();
         }
     }
 

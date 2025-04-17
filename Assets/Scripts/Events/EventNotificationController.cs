@@ -21,9 +21,9 @@ public class EventNotificationController : MonoBehaviour
         eventList = new List<EventNotification>();
     }
 
-    public static void PushNotification(string name, int duration)
+    public static void PushNotification(string name, int duration, MissionEvent endEvent)
     {
-        instance.AddEVent(name, duration);
+        instance.AddEVent(name, duration, endEvent);
     }
 
     public void EndEvent(EventNotification e)
@@ -32,11 +32,11 @@ public class EventNotificationController : MonoBehaviour
         Destroy(e.gameObject);
     }
 
-    private void AddEVent(string name, int duration)
+    private void AddEVent(string name, int duration, MissionEvent endEvent)
     {
         EventNotification notification = Instantiate(notificationPrefab).GetComponent<EventNotification>();
         notification.transform.SetParent(transform);
-        notification.Init(this, name, duration);
+        notification.Init(this, name, duration, endEvent);
         eventList.Add(notification);
     }
 }

@@ -11,6 +11,9 @@ public class PatPlayModule : ModuleUI, MissionEventListener
 {
     private static string apiUrl = "/api/v1/module?module=patplay";
 
+    public override MissionEvent startEvent => MissionEvent.PatPlayTrigger;
+    public override MissionEvent endEvent => MissionEvent.PatPlaySolver;
+
     public float startTimout = 1;
     public float roundTimeout = 0.5f;
     public float flashDuration = 1;
@@ -46,7 +49,7 @@ public class PatPlayModule : ModuleUI, MissionEventListener
 
     public void OnNotify(MissionEvent e)
     {
-        if (e == MissionEvent.PatPlayTrigger)
+        if (e == startEvent)
         {
             ApiController.FetchDataFromAPI<ModuleEventRespone<PatPlayModuleData>>(apiUrl, (data) => {
                 data.Init(this);
@@ -224,7 +227,7 @@ public class PatPlayModule : ModuleUI, MissionEventListener
 
         PlayerInteract.StopInteractions();
         ModuleSucess();
-        MissionEventManager.SendEvent(MissionEvent.PatPlaySolver);
+        MissionEventManager.SendEvent(endEvent);
     }
 
     private IEnumerator Flash(Image image, Color flashColor, float duration)

@@ -7,6 +7,9 @@ public class BipolarityModule : ModuleUI, MissionEventListener
 {
     private static string apiUrl = "/api/v1/module?module=bipolarity";
 
+    public override MissionEvent startEvent => MissionEvent.ThrustersShutdown;
+    public override MissionEvent endEvent => MissionEvent.ThrustersStart;
+
     BipolarityModuleData data;
 
     private Color regularTextColor;
@@ -33,7 +36,7 @@ public class BipolarityModule : ModuleUI, MissionEventListener
             PlayerInteract.StopInteractions();
         } else
         {
-            MissionEventManager.SendEvent(MissionEvent.ThrustersStart);
+            MissionEventManager.SendEvent(endEvent);
             ModuleSucess();
             PlayerInteract.StopInteractions();
         }
@@ -78,7 +81,7 @@ public class BipolarityModule : ModuleUI, MissionEventListener
 
     public void OnNotify(MissionEvent e)
     {
-        if(e == MissionEvent.ThrustersShutdown)
+        if(e == startEvent)
         {
             ApiController.FetchDataFromAPI<ModuleEventRespone<BipolarityModuleData>>(apiUrl, (data) => {
                 data.Init(this);

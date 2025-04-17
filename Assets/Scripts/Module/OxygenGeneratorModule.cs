@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class OxygenGeneratorModule : ModuleUI
 {
+    public override MissionEvent startEvent => MissionEvent.CriticalOxygenQuantity;
+    public override MissionEvent endEvent => MissionEvent.OxygenQuantityRestored;
+
     [SerializeField] private float timerLength = 120f;
     [SerializeField] private Image progressBar;
 
@@ -43,11 +46,11 @@ public class OxygenGeneratorModule : ModuleUI
 
         if(value < criticalValue && oldValue >= criticalValue)
         {
-            MissionEventManager.SendEvent(MissionEvent.CriticalOxygenQuantity);
+            MissionEventManager.SendEvent(startEvent);
         } 
         else if(value >= criticalValue && oldValue < criticalValue)
         {
-            MissionEventManager.SendEvent(MissionEvent.OxygenQuantityRestored);
+            MissionEventManager.SendEvent(endEvent);
         }
 
         if(value <= 0)

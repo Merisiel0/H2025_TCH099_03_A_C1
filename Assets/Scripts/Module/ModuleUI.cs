@@ -8,6 +8,9 @@ public abstract class ModuleUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI serialText;
 
+    public abstract MissionEvent startEvent { get; }
+    public abstract MissionEvent endEvent { get; }
+
     public void OnTimerEnd()
     {
         MissionEventManager.SendEvent(MissionEvent.PlayerEventFailed);
