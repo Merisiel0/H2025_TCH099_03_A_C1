@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Newtonsoft.Json;
 
 public class LevelDataObject : MonoBehaviour
 {
@@ -22,13 +23,7 @@ public class LevelDataObject : MonoBehaviour
 
     public LevelDataObject Init(LevelData data)
     {
-        this.data.id = data.id;
-        this.data.nom = data.nom;
-        this.data.description = data.description;
-        this.data.difficulte = data.difficulte;
-        this.data.duree = data.duree;
-        this.data.couleur = data.couleur;
-
+        this.data = data;
         return this;
     }
 
@@ -49,14 +44,16 @@ public class LevelDataObject : MonoBehaviour
 [System.Serializable]
 public class LevelData
 {
-    public int id = 0;
+    public int id_ = 0;
     public string nom = "Nom";
     public string description = "Description";
     public string difficulte = "Difficulty";
     public int duree = 9999; // temps en seconde (durée du niveau aprox)
     public string couleur = "FF00FF";
-    public int minTemps = 15;
-    public int maxTemps = 20;
+    [JsonProperty("minTemps")]
+    public int minTemps;
+    [JsonProperty("maxTemps")]
+    public int maxTemps;
 }
 
 /// <summary>

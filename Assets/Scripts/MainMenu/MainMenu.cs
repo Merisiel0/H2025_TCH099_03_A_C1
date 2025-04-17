@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Newtonsoft.Json;
 
 /// <summary>
 /// Classe qui permet de g�rer la logique des boutons et des menus du menu principal (�cran d'acceuil)
@@ -130,17 +131,17 @@ public class MainMenu : MonoBehaviour
 
         ApiController.FetchDataFromAPI("api/v1/niveaux", (response) =>
         {
-            LevelDataWrapper data = null;
+            LevelData[] levels = null;
             try
             {
-                data = JsonUtility.FromJson<LevelDataWrapper>("{\"levels\":" + response + "}");
+                levels = JsonConvert.DeserializeObject<LevelData[]>(response);
             }
             catch (Exception e) { Debug.Log(e.Message); }
 
-            if (response != null && data != null)
+            if (response != null && levels != null)
             {
                 // Trier les niveuax en fonctoin de la durée.
-                List<LevelData> sortedLevels = data.levels.OrderBy(level => level.duree).ToList();
+                List<LevelData> sortedLevels = levels.OrderBy(level => level.duree).ToList();
                 
                 foreach (LevelData level in sortedLevels)
                 {
