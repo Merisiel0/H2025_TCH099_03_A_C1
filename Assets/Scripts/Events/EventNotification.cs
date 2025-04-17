@@ -97,7 +97,6 @@ public class EventNotification : MonoBehaviour, MissionEventListener
     /// <param name="e">Evenement lancé</param>
     public void OnNotify(MissionEvent e)
     {
-        Debug.Log("notified " + e + "-> " + endEvent);
         if(e == endEvent)
         {
             EndEvent();

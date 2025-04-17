@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(AudioSource))]
 public class Chair : Interactable
 {
     private Rigidbody2D _rb;
+    private AudioSource source;
+    [SerializeField] private AudioClip squeakSound;
 
     public float maxTurnVelocity = 1100f;
     public float minTurnVelocity = 900f;
@@ -14,6 +17,7 @@ public class Chair : Interactable
     protected override void Start()
     {   
         base.Start();
+        source = GetComponent<AudioSource>();
         _rb = GetComponent<Rigidbody2D>();
 
         turnVelocity = Random.Range(minTurnVelocity, maxTurnVelocity);
@@ -21,6 +25,8 @@ public class Chair : Interactable
 
     public override bool Interact()
     {
+        source.Stop();
+        source.PlayOneShot(squeakSound);
         _rb.angularVelocity = turnVelocity;
         return true;
     }

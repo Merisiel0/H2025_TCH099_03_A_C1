@@ -4,9 +4,13 @@ using Unity.Burst;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerController))]
+[RequireComponent(typeof(AudioSource))]
 public class PlayerInteract : MonoBehaviour
 {
     private static PlayerInteract instance;
+
+    private AudioSource source;
+    [SerializeField] private AudioClip interactSound;
 
     private PlayerController m_controller;
     private Module m_currentlyOpenedModule = null;
@@ -30,6 +34,7 @@ public class PlayerInteract : MonoBehaviour
 
     private void Start()
     {
+        source = GetComponent<AudioSource>();
         m_controller = GetComponent<PlayerController>();
     }
 
@@ -70,6 +75,11 @@ public class PlayerInteract : MonoBehaviour
                                 m_currentlyOpenedModule = module;
                                 m_controller.StopMoving();
                                 m_controller.enabled = false;
+                            } 
+                            else
+                            {
+                                source.Stop();
+                                source.PlayOneShot(interactSound);
                             }
                         }
                     }
