@@ -1311,6 +1311,11 @@ MonoBehaviour:
   menuButton: {fileID: 239603972}
   missionStatusText: {fileID: 1603521094}
   survivedTimeText: {fileID: 1806747090}
+  disableOnGameEnd:
+  - {fileID: 519420028}
+  - {fileID: 1071245655}
+  playerController: {fileID: 1071245660}
+  playerInteract: {fileID: 1071245661}
 --- !u!114 &157691662
 MonoBehaviour:
   m_ObjectHideFlags: 0

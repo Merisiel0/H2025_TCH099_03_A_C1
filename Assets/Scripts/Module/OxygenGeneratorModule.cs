@@ -14,7 +14,7 @@ public class OxygenGeneratorModule : ModuleUI
     private float maxVolume;
     private float fadeSoundDuration = 0.3f;
 
-    [SerializeField] private float timerLength = 120f;
+    [SerializeField] private float timerLength = 5f;
     [SerializeField] private Image progressBar;
 
     private float oldValue = 0f;
@@ -41,12 +41,14 @@ public class OxygenGeneratorModule : ModuleUI
 
         source.volume = 0;
         source.clip = generateSound;
+        StopAllCoroutines();
         StartCoroutine(AudioFade.FadeIn(source, fadeSoundDuration, maxVolume));
     }
 
     public void OnButtonRelease()
     {
         buttonPressed = false;
+        StopAllCoroutines();
         StartCoroutine(AudioFade.FadeOut(source, fadeSoundDuration));
     }
 

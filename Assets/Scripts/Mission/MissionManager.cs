@@ -23,6 +23,13 @@ public class MissionManager : MonoBehaviour, MissionEventListener
     [SerializeField] private TextMeshProUGUI missionStatusText;
     [SerializeField] private TextMeshProUGUI survivedTimeText;
 
+    [SerializeField] private GameObject[] disableOnGameEnd;
+
+    [SerializeField] private PlayerController playerController;
+    [SerializeField] private PlayerInteract playerInteract;
+
+    private bool gameHasEnded = false;
+
     public void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -32,6 +39,8 @@ public class MissionManager : MonoBehaviour, MissionEventListener
 
     public void OnNotify(MissionEvent e)
     {
+        if (gameHasEnded) return;
+
         if(e == MissionEvent.PlayerEventFailed)
         {
             EndMission(false);
@@ -40,6 +49,11 @@ public class MissionManager : MonoBehaviour, MissionEventListener
 
     public void EndMission(bool success)
     {
+        gameHasEnded = true;
+
+        playerInteract.enabled = false;
+        playerController.enabled = false;
+
         missionStatusText.text = success ? successText : failText;
         missionStatusText.color = success ? successColor : failColor;
 
@@ -64,6 +78,8 @@ public class MissionManager : MonoBehaviour, MissionEventListener
 
         AudioClip clip = success ? missionSuccessSound : moduleFailedSound;
         audioSource.PlayOneShot(clip);
+
+        playerController.enabled = false;
     }
 
     public void BackToMainMenu()
