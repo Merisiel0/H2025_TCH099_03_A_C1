@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(AudioSource))]
 public class ElectricPanelModule : ModuleUI, MissionEventListener
 {
     private static string apiUrl = "/api/v1/module?module=wires";
 
     public override MissionEvent startEvent => MissionEvent.ElectricFailure;
     public override MissionEvent endEvent => MissionEvent.ElectricRestart;
+
+    private AudioSource source;
 
     private WireModuleData data;
 
@@ -21,6 +24,8 @@ public class ElectricPanelModule : ModuleUI, MissionEventListener
     public void Start()
     {
         base.Start();
+
+        source = GetComponent<AudioSource>();
 
         data = new WireModuleData();
         MissionEventManager.AddEventListener(this);
@@ -65,6 +70,8 @@ public class ElectricPanelModule : ModuleUI, MissionEventListener
     public void CutWire(int index)
     {
         Destroy(wires[index].gameObject);
+
+        source.Play();
 
         if(index != solution)
         {
