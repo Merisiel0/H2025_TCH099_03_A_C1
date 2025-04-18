@@ -4,10 +4,12 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(AudioSource))]
 public class MissionManager : MonoBehaviour, MissionEventListener
 {
     private AudioSource audioSource;
     [SerializeField] private AudioClip moduleFailedSound;
+    [SerializeField] private AudioClip missionSuccessSound;
 
     [SerializeField] private FadeAnimation fade;
     [SerializeField] private FadeAnimation fadeOverlay;
@@ -51,14 +53,17 @@ public class MissionManager : MonoBehaviour, MissionEventListener
         seconds = seconds.PadLeft(2, '0');
         survivedTimeText.SetText(minutes + ":" + seconds); ;
 
-        StartCoroutine(EndMissionDelay());
+        StartCoroutine(EndMissionDelay(success));
     }
 
-    private IEnumerator EndMissionDelay()
+    private IEnumerator EndMissionDelay(bool success)
     {
         yield return new WaitForSeconds(3.0f);
         fade.fadeIn = true;
         fade.Fade();
+
+        AudioClip clip = success ? missionSuccessSound : moduleFailedSound;
+        audioSource.PlayOneShot(clip);
     }
 
     public void BackToMainMenu()

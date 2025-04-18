@@ -11,7 +11,6 @@ public class ButtonSoundPlayer : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null) Debug.LogError("Il y a deux ButtonSoundPlayer dans la scène!");
         instance = this; // On s'assure d'avoir uniquement une seule instance mais pas problématique si il y a un conflit
     }
 
