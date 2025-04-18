@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 m_dir;
 
     [Header("Sounds")]
-    [SerializeField] private FootstepCollection m_footsteps;
+    [SerializeField] private SoundCollection m_footsteps;
     [SerializeField] private float m_regularFootstepDelay = 0.4f;
     [SerializeField] private float m_runningFootstepDelay = 0.23f;
     private float m_volume;

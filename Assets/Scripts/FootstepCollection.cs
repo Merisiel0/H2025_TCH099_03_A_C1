@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Footsteps", menuName = "Audio/Footstep Collection")]
+[CreateAssetMenu(fileName = "Sound", menuName = "Audio/Sound Collection")]
 [System.Serializable]
-public class FootstepCollection : ScriptableObject
+public class SoundCollection : ScriptableObject
 {
     [SerializeField] private AudioClip[] collection;
 
