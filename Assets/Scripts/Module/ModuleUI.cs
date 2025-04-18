@@ -13,6 +13,7 @@ public abstract class ModuleUI : MonoBehaviour
 
     public void OnTimerEnd()
     {
+        MissionManager.SetFailCause("Vous n'avez pas résolu le module à temps.");
         MissionEventManager.SendEvent(MissionEvent.PlayerEventFailed);
     }
 

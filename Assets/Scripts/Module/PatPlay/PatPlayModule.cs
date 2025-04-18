@@ -209,6 +209,7 @@ public class PatPlayModule : ModuleUI, MissionEventListener
                     if (i != btnIndex && buttons[i].value)
                     {
                         PlayerInteract.StopInteractions();
+                        MissionManager.SetFailCause("Vous avez entré la mauvaise combinaison.");
                         MissionEventManager.SendEvent(MissionEvent.PlayerEventFailed);
                         yield break;
                     }

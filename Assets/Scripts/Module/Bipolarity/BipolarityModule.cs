@@ -32,6 +32,7 @@ public class BipolarityModule : ModuleUI, MissionEventListener
 
         if(input != data.solution)
         {
+            MissionManager.SetFailCause("Vous avez entré le mauvais code.");
             MissionEventManager.SendEvent(MissionEvent.PlayerEventFailed);
             PlayerInteract.StopInteractions();
         } else

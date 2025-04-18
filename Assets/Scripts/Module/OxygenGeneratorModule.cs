@@ -75,6 +75,7 @@ public class OxygenGeneratorModule : ModuleUI
         if(value <= 0)
         {
             progressBar.fillAmount = 0f;
+            MissionManager.SetFailCause("Vous avez manqué d'oxygène."); 
             MissionEventManager.SendEvent(MissionEvent.PlayerEventFailed);
             this.enabled = false; // On évite l'envoie de plusieurs events
         } else

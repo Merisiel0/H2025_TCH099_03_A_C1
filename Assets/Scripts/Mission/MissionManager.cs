@@ -7,7 +7,11 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(AudioSource))]
 public class MissionManager : MonoBehaviour, MissionEventListener
 {
+    private static MissionManager instance;
+
     private AudioSource audioSource;
+    private string failCause = "";
+
     [SerializeField] private AudioClip moduleFailedSound;
     [SerializeField] private AudioClip missionSuccessSound;
 
@@ -22,6 +26,7 @@ public class MissionManager : MonoBehaviour, MissionEventListener
     [SerializeField] private CanvasGroup menuButton;
     [SerializeField] private TextMeshProUGUI missionStatusText;
     [SerializeField] private TextMeshProUGUI survivedTimeText;
+    [SerializeField] private TextMeshProUGUI deathCauseText;
 
     [SerializeField] private GameObject[] disableOnGameEnd;
 
@@ -32,6 +37,8 @@ public class MissionManager : MonoBehaviour, MissionEventListener
 
     public void Start()
     {
+        instance = this;
+
         audioSource = GetComponent<AudioSource>();
 
         MissionEventManager.AddEventListener(this);
@@ -39,9 +46,7 @@ public class MissionManager : MonoBehaviour, MissionEventListener
 
     public void OnNotify(MissionEvent e)
     {
-        if (gameHasEnded) return;
-
-        if(e == MissionEvent.PlayerEventFailed)
+        if(!gameHasEnded && e == MissionEvent.PlayerEventFailed)
         {
             EndMission(false);
         }
@@ -49,25 +54,30 @@ public class MissionManager : MonoBehaviour, MissionEventListener
 
     public void EndMission(bool success)
     {
-        gameHasEnded = true;
+        if(!gameHasEnded)
+        {
+            gameHasEnded = true;
 
-        playerInteract.enabled = false;
-        playerController.enabled = false;
+            playerInteract.enabled = false;
+            playerController.enabled = false;
 
-        missionStatusText.text = success ? successText : failText;
-        missionStatusText.color = success ? successColor : failColor;
+            missionStatusText.text = success ? successText : failText;
+            missionStatusText.color = success ? successColor : failColor;
 
-        menuButton.interactable = true;
-        menuButton.blocksRaycasts = true;
+            menuButton.interactable = true;
+            menuButton.blocksRaycasts = true;
 
-        int survivedTime = (int) (Time.time - GameTimer.instance.startTime);
-        string minutes = (survivedTime / 60).ToString();
-        minutes = minutes.PadLeft(2, '0');
-        string seconds = (survivedTime % 60).ToString();
-        seconds = seconds.PadLeft(2, '0');
-        survivedTimeText.SetText(minutes + ":" + seconds); ;
+            int survivedTime = (int)(Time.time - GameTimer.instance.startTime);
+            string minutes = (survivedTime / 60).ToString();
+            minutes = minutes.PadLeft(2, '0');
+            string seconds = (survivedTime % 60).ToString();
+            seconds = seconds.PadLeft(2, '0');
+            survivedTimeText.SetText(minutes + ":" + seconds); ;
 
-        StartCoroutine(EndMissionDelay(success));
+            deathCauseText.text = failCause;
+
+            StartCoroutine(EndMissionDelay(success));
+        }
     }
 
     private IEnumerator EndMissionDelay(bool success)
@@ -88,5 +98,10 @@ public class MissionManager : MonoBehaviour, MissionEventListener
         fadeOverlay.Fade(() => {
             SceneManager.LoadScene("MainMenu");
         });
+    }
+
+    public static void SetFailCause(string cause)
+    {
+        instance.failCause = cause;
     }
 }

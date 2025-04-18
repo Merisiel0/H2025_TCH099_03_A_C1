@@ -75,12 +75,14 @@ public class ElectricPanelModule : ModuleUI, MissionEventListener
 
         if(index != solution)
         {
+            MissionManager.SetFailCause("Vous avez coupé le mauvais fil.");
             MissionEventManager.SendEvent(MissionEvent.PlayerEventFailed);
             PlayerInteract.StopInteractions();
         }
         else
         {
             MissionEventManager.SendEvent(endEvent);
+            ModuleSucess();
             PlayerInteract.StopInteractions();
         }
     }
