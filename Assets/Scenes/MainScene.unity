@@ -9468,6 +9468,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_walkingSpeed: 3
   m_runningSpeed: 5
+  m_footsteps: {fileID: 11400000, guid: 85593e3392eb55549a02ae2587ccab91, type: 2}
+  m_regularFootstepDelay: 0.4
+  m_runningFootstepDelay: 0.23
 --- !u!114 &1071245661
 MonoBehaviour:
   m_ObjectHideFlags: 0
