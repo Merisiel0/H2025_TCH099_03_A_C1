@@ -14,7 +14,7 @@ public class OxygenGeneratorModule : ModuleUI
     private float maxVolume;
     private float fadeSoundDuration = 0.3f;
 
-    [SerializeField] private float timerLength = 5f;
+    [SerializeField] private float timerLength = 120f;
     [SerializeField] private Image progressBar;
 
     private float oldValue = 0f;

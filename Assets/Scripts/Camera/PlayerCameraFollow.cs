@@ -14,7 +14,8 @@ public class PlayerCameraFollow : MonoBehaviour
     private void Update()
     {
         // On fait que la caméra suit doucement le joueur en fonction de sa position, on applique la nouvelle posiiton (lissé) à la caméera en y ajoutant le décallage.
-        Vector3 smoothed = Vector3.Lerp(transform.position, player.transform.position, followSpeed);
+        float interpolation = followSpeed * Time.deltaTime;
+        Vector3 smoothed = Vector3.Lerp(transform.position, player.transform.position, interpolation);
         transform.position = smoothed + cameraOffset;
     }
 }

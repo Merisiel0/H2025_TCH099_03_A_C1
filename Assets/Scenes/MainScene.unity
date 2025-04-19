@@ -4330,7 +4330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1071245655}
-  followSpeed: 0.01
+  followSpeed: 2.1
   cameraOffset: {x: 0, y: 0, z: -1}
 --- !u!114 &519420034
 MonoBehaviour:
